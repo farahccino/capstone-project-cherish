@@ -1,20 +1,27 @@
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom'
 
 
 export default function FooterNavigation() {
     return (
-        <footer className="footer">
-      <nav className="navigation">
+    <NavWrapper>
         <NavLink exact to="/" className="link">
-          Today
+            today
         </NavLink>
         <NavLink to="/add-goal" className="link">
-          Plus
+            plus
         </NavLink>
         <NavLink to="/goals" className="link">
-          Goals
+            goals
         </NavLink>
-      </nav>
-    </footer>
+     </NavWrapper>
     )
 }
+
+const NavWrapper = styled.footer`
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  width: 100%;
+`
