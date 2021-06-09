@@ -8,12 +8,12 @@ describe('Use Navigation', () => {
     it('changes to Goals page', () => {
       cy.visit('/');
       cy.get('[href="/goals"]').click();
-      cy.get('h1').contains('Goals');
+      cy.get('h1').contains('goals');
     });
   
     it('changes to Plus page', () => {
       cy.visit('/');
       cy.get('[href="/add-goal"]').click();
-      cy.get('h1').contains('Plus');
+      cy.get('h1').contains('plus');
     });
   });
