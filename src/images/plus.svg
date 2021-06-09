@@ -1,50 +1,7 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<g>
-	<g>
-		<path d="M427.129,242.086H269.914V84.871c0-7.685-6.229-13.914-13.914-13.914c-7.685,0-13.914,6.229-13.914,13.914v157.216H84.871
-			c-7.685,0-13.914,6.229-13.914,13.914c0,7.685,6.229,13.914,13.914,13.914h157.216v157.216c0,7.685,6.229,13.914,13.914,13.914
-			c7.685,0,13.914-6.229,13.914-13.914V269.914h157.216c7.685,0,13.914-6.229,13.914-13.914
-			C441.044,248.315,434.814,242.086,427.129,242.086z"/>
-	</g>
-</g>
-<g>
-	<g>
-		<path d="M256.001,0.001C114.841,0.001,0,114.841,0,256s114.841,255.999,256.001,255.999C397.159,511.999,512,397.159,512,256
-			S397.159,0.001,256.001,0.001z M256.001,484.173C130.185,484.173,27.827,381.816,27.827,256
-			c0-125.815,102.357-228.172,228.173-228.172S484.173,130.186,484.173,256C484.173,381.816,381.815,484.173,256.001,484.173z"/>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="232.313" height="232.313" viewBox="0 0 232.313 232.313">
+  <g id="Icon_feather-plus-circle" data-name="Icon feather-plus-circle" transform="translate(-1.5 -1.5)">
+    <path id="Pfad_1" data-name="Pfad 1" d="M232.313,117.657A114.657,114.657,0,1,1,117.657,3,114.657,114.657,0,0,1,232.313,117.657Z" fill="none" stroke="#576074" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+    <path id="Pfad_2" data-name="Pfad 2" d="M18,12v91.725" transform="translate(99.657 59.794)" fill="none" stroke="#576074" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+    <path id="Pfad_3" data-name="Pfad 3" d="M12,18h91.725" transform="translate(59.794 99.657)" fill="none" stroke="#576074" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+  </g>
 </svg>

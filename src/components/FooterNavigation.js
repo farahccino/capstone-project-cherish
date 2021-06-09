@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import today from './images/today.svg';
-import plus from './images/plus.svg';
-import goals from './images/goals.svg';
+import today from '../images/today.svg';
+import plus from '../images/plus.svg';
+import goals from '../images/goals.svg';
  
 
 
-export default function FooterNavigation() {
+export default function FooterNavigation({ isStatic }) {
     return (
-    <NavWrapper>
+    <NavWrapper isStatic={isStatic}>
         <NavLink exact to="/" className="link">
             <img src={today} alt='Today page' />
         </NavLink>
@@ -24,14 +24,13 @@ export default function FooterNavigation() {
 }
 
 const NavWrapper = styled.footer`
-  background-color: bananamania;
   bottom: 0;
   display: flex;
   justify-content: space-around;
-  position: fixed;
+  position: ${(props) => (props.isStatic ? 'static' : 'fixed')};
   width: 100%;
 
  img {
-    height: 3rem;
+    height: 3.3rem;
   }
 `
