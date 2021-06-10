@@ -10,7 +10,7 @@ import goals from '../images/goals.svg';
 export default function FooterNavigation({ isStatic }) {
     return (
     <NavWrapper isStatic={isStatic}>
-        <NavLink exact to="/" className="link">
+        <NavLink to="/today" className="link">
             <img src={today} alt='Today page' />
         </NavLink>
         <NavLink to="/add-goal" className="link">
