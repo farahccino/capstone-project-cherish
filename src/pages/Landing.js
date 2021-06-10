@@ -9,20 +9,48 @@ export default function Landing() {
         <LogoWrapper>
         <LogoImage src={Logo} alt='The Cherish logo is an abstract heart' />
         </LogoWrapper>
-        <button> 😞 </button>
-        <button> 😕 </button>
-        <button> 😐 </button>
-        <button> 🙂 </button>
-        <button> 😄 </button>
+        <EmojiWrapper>
+        <NavLink to="/today" className="link">
+        <Emoji> 😞 </Emoji>
+        </NavLink>
+        <NavLink to="/today" className="link">
+        <Emoji> 😕 </Emoji>
+        </NavLink>
+        <NavLink to="/today" className="link">
+        <Emoji> 😐 </Emoji>
+        </NavLink>
+        <NavLink to="/today" className="link">
+        <Emoji> 🙂 </Emoji>
+        </NavLink>
+        <NavLink to="/today" className="link">
+        <Emoji> 😄 </Emoji>
+        </NavLink>
+        </EmojiWrapper>
         </>
     )
 }
 
+const Emoji = styled.button`
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 3rem;
+    padding: 0.5rem;
+`
+
+const EmojiWrapper = styled.section`
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 13rem;
+`
+
 const LogoImage = styled.img`
-  width: 12rem;
+    width: 13rem;
 `;
 
 const LogoWrapper = styled.section`
-  display: grid;
-  place-items: center;
+    display: grid;
+    place-items: center;
 `
