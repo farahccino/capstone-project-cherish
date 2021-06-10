@@ -9,6 +9,7 @@ export default function Landing() {
         <LogoWrapper>
         <LogoImage src={Logo} alt='The Cherish logo is an abstract heart' />
         </LogoWrapper>
+        <Greeting>Hallo, Currywurst. Wie geht es Dir heute?</Greeting>
         <EmojiWrapper>
         <NavLink to="/today" className="link">
         <Emoji> 😞 </Emoji>
@@ -34,7 +35,7 @@ const Emoji = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 3rem;
+    font-size: 2.9rem;
     padding: 0.5rem;
 `
 
@@ -43,7 +44,16 @@ const EmojiWrapper = styled.section`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 13rem;
+    margin-bottom: 3rem;
+`
+
+const Greeting = styled.p`
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Roboto';
+    justify-content: center;
+    margin-top: 10rem;
 `
 
 const LogoImage = styled.img`
