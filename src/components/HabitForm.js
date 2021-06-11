@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import styled from 'styled-components/macro';
+import validateHabit from '../lib/Validation';
 
 export default function HabitForm({
     headlineText,
@@ -46,7 +47,7 @@ function handleFormSubmit(event) {
       <ErrorBox data-testid="form-error-display" isError={isError}>
         <p>You have an error in your form.</p>
       </ErrorBox>
-      <label htmlFor="habitName">Habit Name</label>
+      <label htmlFor="ZielName">Ziel</label>
       <input
         type="text"
         name="ziel"
@@ -56,12 +57,11 @@ function handleFormSubmit(event) {
      
      <label htmlFor="häufigkeit">Häufigkeit</label>
       <select name="häufigkeit" id="häufigkeit" onChange={updateHabit} value={habit.häufigkeit}>
-        <option value="">---Please select ---</option>
-        {häufigkeit.map((häufigkeit) => (
-          <option key={häufigkeit._id} value={häufigkeit.name}>
-            {häufigkeit.name}
-          </option>
-        ))}
+        <option value=""> wähle die Häufigkeit </option>
+        <option value="täglich">täglich</option>
+        <option value="wöchentlich">wöchentlich</option>
+        <option value="zweiwöchentlich">zweiwöchentlich</option>
+        <option value="monatlich">monatlich</option>
       </select>
 
       <Button isPrimary>hinzufügen</Button>
