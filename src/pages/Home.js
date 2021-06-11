@@ -2,10 +2,43 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom'
 import FooterNavigation from '../components/FooterNavigation';
 
+
+/*
+
+checkboxes, die den State ändern, von false zu true
+
+es soll ja im gleichen Key gespeichert werden wie emojis
+
+false/true 
+
+aber woher kennt er die Anzahl? 
+
+er bekommt die Infos aus dem Formular
+*/
+
+
 export default function Home() {
   return (
     <>
-    <h1> This is the today page! </h1>
+    <Headline> This is the today page. </Headline>
+
+    <section>
+    <label>
+        <input type="checkbox" /*onChange={function hier}*//> 
+            Wasser trinken
+    </label>
+    <label>
+        <input type="checkbox" /*onChange={function hier}*//> 
+            Käsekuchen essen
+    </label>
+    <label>
+        <input type="checkbox" /*onChange={function hier}*//> 
+            Am Code verzweifeln
+    </label>
+    </section>
+
+    
+
     <NavLink to="/tracker" className="link">
     <ButtonWrapper>
     <Button>zum Tracker</Button>
@@ -29,5 +62,11 @@ const ButtonWrapper = styled.section`
     align-items: center;
     display: flex;
     margin-left: 8.5rem;
-    margin-top: 28rem;
+    margin-top: 430px;
+`
+
+const Headline = styled.h1`
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto'
 `
