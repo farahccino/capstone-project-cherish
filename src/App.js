@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
 
-import FooterNavigation from './components/FooterNavigation';
+
 import Home from './pages/Home';
 import Plus from './pages/Plus';
 import Goals from './pages/Goals';
@@ -28,7 +28,6 @@ function App() {
         </Route>
         </Switch>
     </MainContainer>
-    <FooterNavigation />
     </div>
     </>
   );
