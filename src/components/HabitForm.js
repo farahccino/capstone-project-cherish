@@ -4,6 +4,15 @@ import { useState } from 'react';
 import styled from 'styled-components/macro';
 import validateHabit from '../lib/Validation';
 
+
+HabitForm.propTypes = {
+    headlineText: PropTypes.string,
+    onAddHabit: PropTypes.func,
+    habit: PropTypes.arrayOf(PropTypes.object),
+    habitToEdit: PropTypes.object,
+  };
+
+
 export default function HabitForm({
     headlineText,
     onAddHabit,
