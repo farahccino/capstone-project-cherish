@@ -5,7 +5,32 @@ import { useEffect, useState } from 'react';
 import Logo from '../images/cherish.svg';
 
 export default function Landing() {
+
     const [emoji, setEmoji] = useState([]);
+    const [savedEmoji, setSavedEmoji] = useState(loadFromLocalStorage('currentMood') ?? []);
+
+
+    useEffect(() => {
+        saveToLocalStorage ('currentMood', savedEmoji)
+    }, [savedEmoji])
+
+    function placeIntoStorage(){
+    Emoji.isClicked = !Emoji.isClicked;
+    setSavedEmoji(emoji)
+    }
+
+    function saveToLocalStorage(key, data) {
+        localStorage.setItem(key, JSON.stringify(data))
+        }
+         
+      function loadFromLocalStorage(key) {
+          try {
+            const localData = localStorage.getItem(key);
+            return JSON.parse(localData);
+          } catch (error) {
+            console.error(error);
+          }
+        }
     return (
         <>
         <LogoWrapper>
@@ -14,19 +39,19 @@ export default function Landing() {
         <Greeting>Wie geht es Dir heute?</Greeting>
         <EmojiWrapper>
         <NavLink to="/today" className="link">
-        <Emoji> 😞 </Emoji>
+        <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}> 😞 </Emoji>
         </NavLink>
         <NavLink to="/today" className="link">
-        <Emoji> 😕 </Emoji>
+        <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}> 😕 </Emoji>
         </NavLink>
         <NavLink to="/today" className="link">
-        <Emoji> 😐 </Emoji>
+        <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}> 😐 </Emoji>
         </NavLink>
         <NavLink to="/today" className="link">
-        <Emoji> 🙂 </Emoji>
+        <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}> 🙂 </Emoji>
         </NavLink>
         <NavLink to="/today" className="link">
-        <Emoji> 😄 </Emoji>
+        <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}> 😄 </Emoji>
         </NavLink>
         </EmojiWrapper>
         </>

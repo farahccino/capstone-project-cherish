@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
-import { Switch, Route } from 'react-router-dom';
 
+import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Plus from './pages/Plus';
@@ -8,6 +8,8 @@ import Goals from './pages/Goals';
 import Landing from './pages/Landing';
 
 function App() {
+
+
   return (
     <>
     <div>

@@ -1,40 +1,30 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom'
+import { useState } from 'react';
 import FooterNavigation from '../components/FooterNavigation';
 
 
-/*
-
-checkboxes, die den State ändern, von false zu true
-
-es soll ja im gleichen Key gespeichert werden wie emojis
-
-false/true 
-
-aber woher kennt er die Anzahl? 
-
-er bekommt die Infos aus dem Formular
-*/
-
-
 export default function Home() {
+    
+ const initialState = () => {
+     console.log(window.localStorage.getItem('habit'))
+     return JSON.parse(window.localStorage.getItem('habit'))
+     
+     
+ }
+ 
+
+ const [today, setToday] = useState(initialState())
+
+
   return (
     <>
     <Headline> This is the today page. </Headline>
 
     <section>
-    <label>
-        <input type="checkbox" /*onChange={function hier}*//> 
-            Wasser trinken
-    </label>
-    <label>
-        <input type="checkbox" /*onChange={function hier}*//> 
-            Käsekuchen essen
-    </label>
-    <label>
-        <input type="checkbox" /*onChange={function hier}*//> 
-            Am Code verzweifeln
-    </label>
+    <input type="checkbox" />
+    <span>{today.ziel}</span>
+
     </section>
 
     

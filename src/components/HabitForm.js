@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components/macro';
-import validateHabit from '../lib/Validation';
+import validateHabit from '../lib/validation';
+import { saveToLocal, loadFromLocal } from '../lib/localStorage';
 
 
 HabitForm.propTypes = {
     headlineText: PropTypes.string,
     onAddHabit: PropTypes.func,
-    habit: PropTypes.arrayOf(PropTypes.object),
+    häufigkeit: PropTypes.arrayOf(PropTypes.object),
     habitToEdit: PropTypes.object,
   };
 
@@ -37,27 +38,34 @@ function updateHabit(event) {
 function handleFormSubmit(event) {
     event.preventDefault();
 
-    if (validateHabit(habit)) {
-      onAddHabit(habit);
-      setHabit(initialState);
-      setIsError(false);
-    } else {
-      setIsError(true);
-      setTimeout(() => setIsError(false), 4000);
-    }
+    // if (validateHabit(habit)) {
+    //   onAddHabit(habit);
+    //   setHabit(initialState);
+    //   setIsError(false);
+    // } else {
+    //   setIsError(true);
+    //   setTimeout(() => setIsError(false), 3000);
+    // }
   }
    
 
+  //const [habit, setHabit] = useState(loadFromLocal('habit') ?? []);
 
-  
+  useEffect(() => {
+    window.localStorage.setItem('habit', JSON.stringify(habit))
+  }, [habit]);
+
+  function addHabit(habit) {
+    setHabit([...habit, habit]);
+  }
+
   return (
     <Form onSubmit={handleFormSubmit}>
-      <h2>{headlineText}</h2>
       <ErrorBox data-testid="form-error-display" isError={isError}>
         <p>You have an error in your form.</p>
       </ErrorBox>
       <label htmlFor="ZielName">Ziel</label>
-      <input
+      <Ziel
         type="text"
         name="ziel"
         onChange={updateHabit}
@@ -80,6 +88,30 @@ function handleFormSubmit(event) {
     </Form>
   );
 }
+
+const Button = styled.button`
+  padding: 1.5rem;
+  border-radius: 0.4rem;
+  border: none;
+  background: ${(props) =>
+    props.isPrimary ? 'hsl(160, 60%, 50%)' : 'hsla(160, 60%, 80%, 0.3)'};
+  cursor: pointer;
+  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
+  font-size: 1.2rem;
+`;
+
+
+const ErrorBox = styled.div`
+  background: hsl(340, 60%, 50%);
+  color: hsl(340, 95%, 95%);
+  padding: ${(props) => (props.isError ? '1.2rem' : 0)};
+  border-radius: 0.5rem;
+  opacity: ${(props) => (props.isError ? 1 : 0)};
+  max-height: ${(props) => (props.isError ? '100%' : '1px')};
+  transition: all 1s ease-in-out;
+  font-size: ${(props) => (props.isError ? '1rem' : '1px')};
+  font-weight: bold;
+`;
 
 
 const Form = styled.form`
@@ -107,39 +139,14 @@ const Form = styled.form`
     border: none;
     display: flex;
     gap: 0.4rem;
-    padding: 0;
+    padding: 0rem;
     margin: 0;
   }
   fieldset > label {
     font-weight: normal;
   }
-  input[type='radio'],
-  input[type='checkbox'] {
-    transform: scale(1.5);
-    margin-right: 0.5rem;
-  }
 `;
 
-const Button = styled.button`
-  padding: 1.5rem;
-  border-radius: 0.4rem;
-  border: none;
-  background: ${(props) =>
-    props.isPrimary ? 'hsl(160, 60%, 50%)' : 'hsla(160, 60%, 80%, 0.3)'};
-  cursor: pointer;
-  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
-  font-size: 1.2rem;
-`;
-
-
-const ErrorBox = styled.div`
-  background: hsl(340, 60%, 50%);
-  color: hsl(340, 95%, 95%);
-  padding: ${(props) => (props.isError ? '1.2rem' : 0)};
-  border-radius: 0.5rem;
-  opacity: ${(props) => (props.isError ? 1 : 0)};
-  max-height: ${(props) => (props.isError ? '100%' : '1px')};
-  transition: all 1s ease-in-out;
-  font-size: ${(props) => (props.isError ? '1rem' : '1px')};
-  font-weight: bold;
-`;
+const Ziel = styled.input`
+height: 6rem;
+`
