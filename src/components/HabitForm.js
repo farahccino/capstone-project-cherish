@@ -20,24 +20,41 @@ export default function HabitForm({
     häufigkeit,
     habitToEdit,
 }) { 
-const initialState = {
-    ziel: '',
-    häufigkeit: '',
+const initialState = ()=>{
+    console.log(window.localStorage.getItem('habit'))
+     return JSON.parse(window.localStorage.getItem('habit'))
 };
 
-const [habit, setHabit] = useState(habitToEdit ?? initialState);
+const [habit, setHabit] = useState(initialState());
 const [isError, setIsError] = useState(false);
+const [fieldName, setFieldName] = useState('');
+const [fieldValue, setFieldValue] = useState('');
+const [frequency, setFrequency] = useState('');
+const [frequencyName, setFrequencyName] = useState('');
+function updateField(event) {
+    setFieldName(event.target.name);
+    setFieldValue(event.target.value);
+    
 
-function updateHabit(event) {
-    const fieldName = event.target.name;
-    let fieldValue = event.target.value;
-   
-    setHabit({ ...habit, [fieldName]: fieldValue });
+  
+}
+
+function updateFrequency(event) {
+    setFrequencyName(event.target.name);
+    setFrequency(event.target.value);
+    
+
+  
 }
 
 function handleFormSubmit(event) {
     event.preventDefault();
 
+    let hab0= [...habit]
+    console.log(hab0)
+    
+   hab0.push({[fieldName]: fieldValue, [frequencyName]: frequency })
+    setHabit(hab0);
     // if (validateHabit(habit)) {
     //   onAddHabit(habit);
     //   setHabit(initialState);
@@ -68,12 +85,12 @@ function handleFormSubmit(event) {
       <Ziel
         type="text"
         name="ziel"
-        onChange={updateHabit}
-        value={habit.ziel}
+        onChange={updateField}
+        value={fieldValue}
       />
      
      <label htmlFor="häufigkeit">Häufigkeit</label>
-      <select name="häufigkeit" id="häufigkeit" onChange={updateHabit} value={habit.häufigkeit}>
+      <select name="häufigkeit" id="häufigkeit" onChange={updateFrequency} value={frequency}>
         <option value=""> wähle die Häufigkeit </option>
         <option value="täglich">täglich</option>
         <option value="wöchentlich">wöchentlich</option>

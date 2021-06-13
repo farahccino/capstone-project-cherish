@@ -7,23 +7,32 @@ import FooterNavigation from '../components/FooterNavigation';
 export default function Home() {
     
  const initialState = () => {
-     console.log(window.localStorage.getItem('habit'))
-     return JSON.parse(window.localStorage.getItem('habit'))
-     
-     
+     return JSON.parse(window.localStorage.getItem('habit'))  
  }
  
 
  const [today, setToday] = useState(initialState())
 
+ const checkbox=(value)=>{
+     return (
+         <div>
+             <input type="checkbox" />
+             <span>{value}</span>
+         </div>
+     )
+ }
 
   return (
     <>
     <Headline> This is the today page. </Headline>
 
     <section>
-    <input type="checkbox" />
-    <span>{today.ziel}</span>
+   
+    <span>{today.map((item)=>{
+     if(item.häufigkeit=="täglich"){
+         return checkbox(item.ziel)
+     }
+    })}</span>
 
     </section>
 
