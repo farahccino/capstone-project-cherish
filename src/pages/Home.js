@@ -28,11 +28,11 @@ export default function Home() {
 
     <section>
    
-    <span>{today.map((item)=>{
+    <span> {today.map((item)=>{
      if(item.häufigkeit=="täglich"){
          return checkbox(item.ziel)
      }
-    })}</span>
+    })} </span>
 
     </section>
 
