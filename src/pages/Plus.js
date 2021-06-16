@@ -5,14 +5,14 @@ import FooterNavigation from '../components/FooterNavigation';
 
 
 
-export default function Plus() {
+export default function Plus({onAddHabit}) {
 
 
 
   return (
     <>
      <h1> This is the plus page! </h1>
-     <HabitForm />
+     <HabitForm onAddHabit={onAddHabit} />
      <FooterNavigation />
     </>
   );

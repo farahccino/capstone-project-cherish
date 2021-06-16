@@ -8,7 +8,7 @@ import styled from 'styled-components/macro';
 HabitForm.propTypes = {
     headlineText: PropTypes.string,
     onAddHabit: PropTypes.func,
-    häufigkeit: PropTypes.arrayOf(PropTypes.object),
+    haeufigkeit: PropTypes.arrayOf(PropTypes.object),
     habitToEdit: PropTypes.object,
   };
 
@@ -19,11 +19,9 @@ export default function HabitForm({
     häufigkeit,
     habitToEdit,
 }) { 
-const initialState = ()=>{
-     return JSON.parse(window.localStorage.getItem('habit')) 
-};
 
-const [habit, setHabit] = useState(initialState());
+
+const [habit, setHabit] = useState([]);
 const [isError, setIsError] = useState(false);
 const [fieldName, setFieldName] = useState('');
 const [fieldValue, setFieldValue] = useState('');
@@ -42,18 +40,11 @@ function updateFrequency(event) {
 
 function handleFormSubmit(event) {
     event.preventDefault();
-    let habitArray = habit?[...habit]:[];
-    habitArray.push({[fieldName]: fieldValue, [frequencyName]: frequency })
-    setHabit(habitArray);
+    const newHabit = {[fieldName]: fieldValue, [frequencyName]: frequency }
+    onAddHabit(newHabit)
   }
-   
-  useEffect(() => {
-    window.localStorage.setItem('habit', JSON.stringify(habit))
-  }, [habit]);
+ 
 
-  function addHabit(habit) {
-    setHabit([...habit, habit]);
-  }
 
   return (
     <Form onSubmit={handleFormSubmit}>
@@ -75,7 +66,7 @@ function handleFormSubmit(event) {
       </select>
 
       <Button isPrimary>hinzufügen</Button>
-      <Button type="reset" onClick={() => setHabit(initialState)}>
+      <Button type="reset" onClick={() => setHabit([])}>
         abbrechen
       </Button>
     </Form>

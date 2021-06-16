@@ -26,7 +26,6 @@ body {
     font-family: 'Roboto';
     line-height: 1.5;
     margin: 0;
-
 }
 
 `;

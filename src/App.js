@@ -1,6 +1,9 @@
 import styled from 'styled-components/macro';
 
 import { Switch, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
 import Home from './pages/Home';
 import Plus from './pages/Plus';
@@ -9,6 +12,21 @@ import Landing from './pages/Landing';
 
 function App() {
 
+  const [habits, setHabits] = useState(
+    loadFromLocalStorage('habits') ?? []
+  );
+
+
+useEffect(() => {
+    updateLocalStorage('habits', habits);
+  }, [habits]);
+
+
+  function addHabit(newHabit){
+    setHabits([newHabit, ...habits])
+  }
+
+  
 
   return (
     <>
@@ -20,10 +38,10 @@ function App() {
           <Landing />
         </Route>
         <Route path='/today'>
-          <Home />
+          <Home habits={habits}/>
         </Route>
         <Route path='/add-goal'>
-          <Plus />
+          <Plus onAddHabit={addHabit}/>
         </Route>
         <Route path='/goals'>
           <Goals />

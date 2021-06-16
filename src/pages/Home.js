@@ -4,14 +4,8 @@ import { useState } from 'react';
 import FooterNavigation from '../components/FooterNavigation';
 
 
-export default function Home() {
+export default function Home({habits}) {
     
- const initialState = () => {
-     return JSON.parse(window.localStorage.getItem('habit'))  
- }
- 
-
- const [today, setToday] = useState(initialState())
 
  const checkbox=(value)=>{
      return (
@@ -28,7 +22,7 @@ export default function Home() {
 
     <section>
    
-    <span> {today.map((item)=>{
+    <span> {habits.map((item)=>{
      if(item.häufigkeit=="täglich"){
          return checkbox(item.ziel)
      }
