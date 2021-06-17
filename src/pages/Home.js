@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
@@ -27,7 +29,11 @@ export default function Home({
     id,
     habitToEdit,
     setHabitToEdit,
-    setActivePage
+    setActivePage,
+    onSubmit,
+    handleFormSubmit,
+    fieldName,
+    habitsArrayWithId
 }) {
     
 
@@ -56,6 +62,9 @@ export default function Home({
     setActivePage('form')
   }
 
+ 
+
+
 
   return (
     <>
@@ -82,6 +91,7 @@ export default function Home({
         habit={habit}
         handleEditClick={handleEditClick}
         handleDeleteClick={handleDeleteClick}
+        setHabitToEdit={setHabitToEdit}
         />
      if(habit.häufigkeit=="täglich"){
          return checkbox(habit.ziel)
@@ -123,6 +133,7 @@ export default function Home({
  
 }
  
+
 
 
 const Button = styled.button`

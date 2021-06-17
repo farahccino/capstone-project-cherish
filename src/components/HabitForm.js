@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import styled from 'styled-components/macro';
 
@@ -9,7 +10,7 @@ HabitForm.propTypes = {
     headlineText: PropTypes.string,
     onAddHabit: PropTypes.func,
     häufigkeit: PropTypes.arrayOf(PropTypes.object),
-    habitToEdit: PropTypes.object,
+    setHabitToEdit: PropTypes.func,
   };
 
 
@@ -17,36 +18,24 @@ export default function HabitForm({
     headlineText,
     onAddHabit,
     häufigkeit,
+    setActivePage,
     habitToEdit,
+    setHabitToEdit,
+    updateField,
+    updateFrequency,
+    handleFormSubmit,
+    fieldValue,
+    frequency
 }) { 
 
 
 const [habit, setHabit] = useState([]);
 const [isError, setIsError] = useState(false);
-const [fieldName, setFieldName] = useState('');
-const [fieldValue, setFieldValue] = useState('');
-const [frequency, setFrequency] = useState('');
-const [frequencyName, setFrequencyName] = useState('');
 
 const placeholderText = `neues Ziel tippen...
 `
 
-function updateField(event) {
-    setFieldName(event.target.name);
-    setFieldValue(event.target.value);  
-}
 
-function updateFrequency(event) {
-    setFrequencyName(event.target.name);
-    setFrequency(event.target.value);
-}
-
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const newHabit = {[fieldName]: fieldValue, [frequencyName]: frequency }
-    onAddHabit(newHabit)
-  }
- 
 
 
   return (
@@ -69,12 +58,15 @@ function handleFormSubmit(event) {
       </select>
 
       <Button isPrimary>hinzufügen</Button>
-      <Button type="reset" onClick={() => setHabit([])}>
-        abbrechen
-      </Button>
+      <Button onClick="reset" type="button">
+            zurück
+          </Button>
     </Form>
   );
 }
+
+
+
 
 const Button = styled.button`
   padding: 1.5rem;
