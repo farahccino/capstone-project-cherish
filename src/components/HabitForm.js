@@ -8,7 +8,7 @@ import styled from 'styled-components/macro';
 HabitForm.propTypes = {
     headlineText: PropTypes.string,
     onAddHabit: PropTypes.func,
-    haeufigkeit: PropTypes.arrayOf(PropTypes.object),
+    häufigkeit: PropTypes.arrayOf(PropTypes.object),
     habitToEdit: PropTypes.object,
   };
 

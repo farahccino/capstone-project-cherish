@@ -13,12 +13,12 @@ import Landing from './pages/Landing';
 function App() {
 
   const [habits, setHabits] = useState(
-    loadFromLocalStorage('habits') ?? []
+    loadFromLocalStorage('cherishHabits') ?? []
   );
 
 
 useEffect(() => {
-    updateLocalStorage('habits', habits);
+    updateLocalStorage('cherishHabits', habits);
   }, [habits]);
 
 
