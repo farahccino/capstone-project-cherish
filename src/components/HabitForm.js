@@ -28,6 +28,9 @@ const [fieldValue, setFieldValue] = useState('');
 const [frequency, setFrequency] = useState('');
 const [frequencyName, setFrequencyName] = useState('');
 
+const placeholderText = `neues Ziel tippen...
+`
+
 function updateField(event) {
     setFieldName(event.target.name);
     setFieldValue(event.target.value);  
@@ -54,8 +57,8 @@ function handleFormSubmit(event) {
         name="ziel"
         onChange={updateField}
         value={fieldValue}
+        placeholder={placeholderText}
       />
-     
      <label htmlFor="häufigkeit">Häufigkeit</label>
       <select name="häufigkeit" id="häufigkeit" onChange={updateFrequency} value={frequency}>
         <option value=""> wähle die Häufigkeit </option>
@@ -119,6 +122,12 @@ const Form = styled.form`
   padding: 0.3rem;
 `;
 
+
+
 const Ziel = styled.input`
-height: 6rem;
+    height: 6rem;
+
+    ::placeholder{
+        color: var(--secondary-dark);
+}
 `
