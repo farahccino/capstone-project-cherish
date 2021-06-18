@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
@@ -23,22 +22,20 @@ Home.propTypes = {
 }
 
 export default function Home({
-    habit,
     habits,
     setHabits,
     id,
     habitToEdit,
-    setHabitToEdit,
+    onSetHabitToEdit,
     setActivePage,
-    onSubmit,
-    handleFormSubmit,
-    fieldName,
-    habitsArrayWithId
+    onEditHabit
 }) {
     
 
  const [editMode, setEditMode] = useState(false)
+ const [showsEditModal, setShowsEditModal] = useState(false)
 
+ 
  const checkbox = (value)=>{
      return (
          <div>
@@ -49,20 +46,27 @@ export default function Home({
  }
 
  function handleDeleteClick(id) {
-    const index = habits.findIndex(habit => habit.id === id)
-    setHabits([
-      ...habits.slice(0, index),
-      ...habits.slice(index + 1),
-    ])
+    const remainingHabits = habits.filter(habit => habit.id !== id)
+    setHabits(remainingHabits)
   }
 
   function handleEditClick(id) {
-    const index = habits.findIndex(habit => habit.id === id)
-    setHabitToEdit(habits[index])
-    setActivePage('form')
+    const habitToEdit = habits.filter(habit => habit.id === habitToEdit.id)
+    setHabits(habitToEdit)
   }
 
- 
+// zurück-Button
+//   if (habitToEdit.habits) {
+//     onSubmit({
+//       id: habitToEdit.id,
+//       habits: habitsArrayWithId,
+//     })
+//     } else {
+//     onSubmit({ id: uuidv4(), habits: habitsArrayWithId })
+//     }
+//     setHabitToEdit({})
+//     setActivePage('today')
+    
 
 
 
@@ -83,44 +87,39 @@ export default function Home({
       </EditButtonWrapper>
 
   
-    <span> 
-    {habits.map((habit, id)=>{
-        <HabitForm
-        key={id}
-        id={id}
-        habit={habit}
-        handleEditClick={handleEditClick}
-        handleDeleteClick={handleDeleteClick}
-        setHabitToEdit={setHabitToEdit}
-        />
+    <div> 
+    {habits.map((habit)=>{
      if(habit.häufigkeit=="täglich"){
-         return checkbox(habit.ziel)
-     }
-    })} 
-    </span>
-
+         return (<>
+         {checkbox(habit.ziel)}
+          
     {editMode && (
         <>
           <IconButton
-            right="10px"
-            top="20px"
-            onClick={() => handleDeleteClick(id)}
-            position="absolute"
+            onClick={() => handleDeleteClick(habit.id)}
           >
-            <img src={deleteIcon} alt="löschen" height="16px" />
+            <img src={deleteIcon} alt="löschen" height="16" />
           </IconButton>
           <IconButton
-            right="10px"
-            top="52px"
-            onClick={() => handleEditClick(id)}
-            position="absolute"
+            onClick={() => {setShowsEditModal(true)
+            onSetHabitToEdit(habit)
+            }} 
           >
-            <img src={editIcon} alt="bearbeiten" height="16px" />
+            <img src={editIcon} alt="bearbeiten" height="16" />
           </IconButton>
         </>
       )}
+  </>
+         )
+     }
+     
+    })} 
+    </div>
 
-
+    {
+    showsEditModal &&
+    <HabitWrapper><HabitForm setShowsEditModal={setShowsEditModal} habitToEdit={habitToEdit} onEditHabit={onEditHabit}/></HabitWrapper>
+    }
 
     <NavLink to="/tracker" className="link">
     <ButtonWrapper>
@@ -148,8 +147,7 @@ const Button = styled.button`
 const ButtonWrapper = styled.section`
     align-items: center;
     display: flex;
-    margin-left: 8.5rem;
-    margin-top: 430px;
+  
 `
 
 const EditButtonWrapper = styled.div`
@@ -163,7 +161,20 @@ const EditButtonWrapper = styled.div`
 const Headline = styled.h1`
     display: flex;
     align-items: center;
-    font-family: 'Roboto'
+    font-family: 'Roboto';
+`
+
+const HabitWrapper = styled.div`
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 `
 
 const IconButton = styled.button`

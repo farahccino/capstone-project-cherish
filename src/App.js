@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 import { Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+
 
 import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
@@ -13,17 +13,16 @@ import Landing from './pages/Landing';
 
 function App() {
 
-  const [fieldName, setFieldName] = useState('');
-  const [fieldValue, setFieldValue] = useState('');
-  const [frequency, setFrequency] = useState('');
+  
   const [frequencyName, setFrequencyName] = useState('');
   const [activePage, setActivePage] = useState('today');
-  const [habitToEdit, setHabitToEdit] = useState([]);
-  
+  const [habitToEdit, setHabitToEdit] = useState(null);
+
+
   const [habits, setHabits] = useState(
     loadFromLocalStorage('cherishHabits') ?? []
   );
-
+  console.log(habits)
   useEffect(() => {
     updateLocalStorage('cherishHabits', habits);
   }, [habits]);
@@ -33,29 +32,15 @@ function App() {
     setHabits([newHabit, ...habits])
   }
 
+  function editHabit(editedHabit){
+    const upToDateHabits = habits.filter((habit) => habit.id !== editedHabit.id)
+    setHabits([...upToDateHabits, editedHabit])
+  }
+
   function handleActivePage(page) {
     setActivePage(page)
   }
 
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    const newHabit = {[fieldName]: fieldValue, [frequencyName]: frequency }
-    addHabit(newHabit)
-    const habitsArrayWithId = fieldName.value
-  .map(fieldName => ({ id: uuidv4(), fieldName: fieldName }))
-}
-
-  
-function updateField(event) {
-  setFieldName(event.target.name);
-  setFieldValue(event.target.value);  
-}
-
-function updateFrequency(event) {
-  setFrequencyName(event.target.name);
-  setFrequency(event.target.value);
-}
-  
 
   return (
     <>
@@ -67,10 +52,10 @@ function updateFrequency(event) {
           <Landing />
         </Route>
         <Route path='/today'>
-          <Home habits={habits} onSetHabitToEdit={setHabitToEdit} handleFormSubmit={handleFormSubmit} habitToEdit={habitToEdit}/>
+          <Home habits={habits} setHabits={setHabits} onEditHabit={editHabit} onSetHabitToEdit={setHabitToEdit} habitToEdit={habitToEdit}/>
         </Route>
         <Route path='/add-goal'>
-          <Plus addHabit={addHabit} setHabitToEdit={setHabitToEdit} onNavigate={handleActivePage} updateField={updateField} updateFrequency={updateFrequency}/>
+          <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} onNavigate={handleActivePage}/>
         </Route>
         <Route path='/goals'>
           <Goals />

@@ -17,25 +17,44 @@ HabitForm.propTypes = {
 export default function HabitForm({
     headlineText,
     onAddHabit,
+    onEditHabit,
     häufigkeit,
     setActivePage,
     habitToEdit,
     setHabitToEdit,
-    updateField,
-    updateFrequency,
     handleFormSubmit,
-    fieldValue,
-    frequency
+    setShowsEditModal
 }) { 
 
+const initialHabit = {
+  ziel: '',
+  häufigkeit: '',
+}
 
-const [habit, setHabit] = useState([]);
+const [habit, setHabit] = useState(habitToEdit ?? initialHabit);
 const [isError, setIsError] = useState(false);
+const [frequency, setFrequency] = useState('');
+
+
 
 const placeholderText = `neues Ziel tippen...
 `
 
+function updateHabit(event) {
+  const fieldName = event.target.name;
+  let fieldValue = event.target.value;
+  setHabit({...habit, [fieldName]:fieldValue})
+}
 
+function handleFormSubmit(event) {
+  event.preventDefault();
+  if (habitToEdit) {
+    onEditHabit(habit)
+} else {
+  onAddHabit({...habit, id: uuidv4()})
+}
+  setShowsEditModal(false)
+}
 
 
   return (
@@ -44,12 +63,12 @@ const placeholderText = `neues Ziel tippen...
       <Ziel
         type="text"
         name="ziel"
-        onChange={updateField}
-        value={fieldValue}
+        onChange={updateHabit}
+        value={habit.ziel}
         placeholder={placeholderText}
       />
      <label htmlFor="häufigkeit">Häufigkeit</label>
-      <select name="häufigkeit" id="häufigkeit" onChange={updateFrequency} value={frequency}>
+      <select name="häufigkeit" id="häufigkeit" onChange={updateHabit} value={habit.häufigkeit}>
         <option value=""> wähle die Häufigkeit </option>
         <option value="täglich">täglich</option>
         <option value="wöchentlich">wöchentlich</option>
