@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import styled from 'styled-components/macro';
-
 
 
 HabitForm.propTypes = {
@@ -36,7 +36,6 @@ const [isError, setIsError] = useState(false);
 const [frequency, setFrequency] = useState('');
 
 
-
 const placeholderText = `neues Ziel tippen...
 `
 
@@ -56,6 +55,10 @@ function handleFormSubmit(event) {
   setShowsEditModal(false)
 }
 
+let history = useHistory();
+  const goToPreviousPath = () => {
+    history.goBack();
+  };
 
   return (
     <Form onSubmit={handleFormSubmit}>
@@ -77,14 +80,12 @@ function handleFormSubmit(event) {
       </select>
 
       <Button isPrimary>hinzufügen</Button>
-      <Button onClick="reset" type="button">
-            zurück
-          </Button>
+        <Button onClick={goToPreviousPath}>
+        Back
+      </Button>
     </Form>
   );
 }
-
-
 
 
 const Button = styled.button`
