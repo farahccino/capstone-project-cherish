@@ -63,7 +63,13 @@ function App() {
               />
             </Route>
             <Route path="/goals">
-              <Goals />
+              <Goals
+                habits={habits}
+                setHabits={setHabits}
+                onEditHabit={editHabit}
+                onSetHabitToEdit={setHabitToEdit}
+                habitToEdit={habitToEdit}
+              />
             </Route>
           </Switch>
         </MainContainer>
