@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
+import "moment/locale/de";
 
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -34,7 +35,7 @@ export default function Home({
 
   const current = moment();
 
-  const date = moment(current).format("dddd, MMMM Do YYYY");
+  const date = moment(current).format("dddd, Do MMMM YYYY");
 
   const checkbox = (value) => {
     return (
@@ -142,14 +143,15 @@ const EditButtonWrapper = styled.div`
 `;
 
 const Headline = styled.h1`
-  display: flex;
   align-items: center;
+  color: var(--secondary-dark);
+  display: flex;
+  justify-content: center;
   font-family: "Roboto";
 `;
 
 const HabitWrapper = styled.div`
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   display: block;
   position: absolute;
   top: 0;
