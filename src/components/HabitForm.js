@@ -35,7 +35,7 @@ export default function HabitForm({
   const placeholderText = `neues Ziel tippen...
 `;
 
-  function updateHabit(event) {
+  function handleUpdateHabit(event) {
     const fieldName = event.target.name;
     let fieldValue = event.target.value;
     setHabit({ ...habit, [fieldName]: fieldValue });
@@ -62,7 +62,7 @@ export default function HabitForm({
       <Ziel
         type="text"
         name="ziel"
-        onChange={updateHabit}
+        onChange={handleUpdateHabit}
         value={habit.ziel}
         placeholder={placeholderText}
       />
@@ -70,7 +70,7 @@ export default function HabitForm({
       <select
         name="häufigkeit"
         id="häufigkeit"
-        onChange={updateHabit}
+        onChange={handleUpdateHabit}
         value={habit.häufigkeit}
       >
         <option value=""> wähle die Häufigkeit </option>
