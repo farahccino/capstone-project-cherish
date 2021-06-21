@@ -7,6 +7,7 @@ import styled from "styled-components";
 import FooterNavigation from "../components/FooterNavigation";
 import HabitForm from "../components/HabitForm";
 import Today from "../components/TodaysDate";
+import { formatDate } from "../components/TodaysDate";
 
 import editIcon from "../images/edit.svg";
 import deleteIcon from "../images/delete.svg";
@@ -53,7 +54,7 @@ export default function Home({
 
   return (
     <>
-      <Headline Today={Today}> This is the today page. </Headline>
+      <Headline Today={Today}>{formatDate}</Headline>
       <EditButtonWrapper>
         {habits.length !== 0 &&
           (editMode === false ? (
