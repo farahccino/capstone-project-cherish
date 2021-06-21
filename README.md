@@ -1,3 +1,11 @@
+# Plan Your activities with Cherish!
+
+This innovative app gives You an overview of Your activities and Your mood. Thanks to the tracker You can reflect upon Your week. Cherish has an intuitive design and serves as a reminder, tracker and journal.
+
+# Plane Deine Aktivitäten mit Cherish!
+
+Mit dieser innovativen App behältst Du den Überblick über Deine Aktivitäten und Deine Stimmung. Dank des Trackers kannst Du reflektieren, wie Deine Woche verlaufen ist. Cherish hat ein intuitives Design und dient als Reminder, Tracker und Journal.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

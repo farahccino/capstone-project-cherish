@@ -1,19 +1,14 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
-import HabitForm from '../components/HabitForm';
-import FooterNavigation from '../components/FooterNavigation';
+import HabitForm from "../components/HabitForm";
+import FooterNavigation from "../components/FooterNavigation";
 
-
-
-export default function Plus() {
-
-
-
+export default function Plus({ onAddHabit, setHabitToEdit, onNavigate }) {
   return (
     <>
-     <h1> This is the plus page! </h1>
-     <HabitForm />
-     <FooterNavigation />
+      <h1> This is the plus page! </h1>
+      <HabitForm onAddHabit={onAddHabit} setHabitToEdit={setHabitToEdit} />
+      <FooterNavigation />
     </>
   );
 }

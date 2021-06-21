@@ -1,59 +1,60 @@
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
-import styled from 'styled-components/macro';
-
-
+import styled from "styled-components/macro";
 
 HabitForm.propTypes = {
-    headlineText: PropTypes.string,
-    onAddHabit: PropTypes.func,
-    häufigkeit: PropTypes.arrayOf(PropTypes.object),
-    habitToEdit: PropTypes.object,
-  };
-
-
-export default function HabitForm({
-    headlineText,
-    onAddHabit,
-    häufigkeit,
-    habitToEdit,
-}) { 
-const initialState = ()=>{
-     return JSON.parse(window.localStorage.getItem('habit')) 
+  headlineText: PropTypes.string,
+  onAddHabit: PropTypes.func,
+  häufigkeit: PropTypes.arrayOf(PropTypes.object),
+  setHabitToEdit: PropTypes.func,
 };
 
-const [habit, setHabit] = useState(initialState());
-const [isError, setIsError] = useState(false);
-const [fieldName, setFieldName] = useState('');
-const [fieldValue, setFieldValue] = useState('');
-const [frequency, setFrequency] = useState('');
-const [frequencyName, setFrequencyName] = useState('');
+export default function HabitForm({
+  headlineText,
+  onAddHabit,
+  onEditHabit,
+  häufigkeit,
+  setActivePage,
+  habitToEdit,
+  setHabitToEdit,
+  handleFormSubmit,
+  setShowsEditModal,
+}) {
+  const initialHabit = {
+    ziel: "",
+    häufigkeit: "",
+  };
 
-function updateField(event) {
-    setFieldName(event.target.name);
-    setFieldValue(event.target.value);  
-}
+  const [habit, setHabit] = useState(habitToEdit ?? initialHabit);
+  const [isError, setIsError] = useState(false);
+  const [frequency, setFrequency] = useState("");
 
-function updateFrequency(event) {
-    setFrequencyName(event.target.name);
-    setFrequency(event.target.value);
-}
+  const placeholderText = `neues Ziel tippen...
+`;
 
-function handleFormSubmit(event) {
+  function updateHabit(event) {
+    const fieldName = event.target.name;
+    let fieldValue = event.target.value;
+    setHabit({ ...habit, [fieldName]: fieldValue });
+  }
+
+  function handleFormSubmit(event) {
     event.preventDefault();
-    let habitArray = habit?[...habit]:[];
-    habitArray.push({[fieldName]: fieldValue, [frequencyName]: frequency })
-    setHabit(habitArray);
+    if (habitToEdit) {
+      onEditHabit(habit);
+      setShowsEditModal(false);
+    } else {
+      onAddHabit({ ...habit, id: uuidv4() });
+    }
   }
-   
-  useEffect(() => {
-    window.localStorage.setItem('habit', JSON.stringify(habit))
-  }, [habit]);
 
-  function addHabit(habit) {
-    setHabit([...habit, habit]);
-  }
+  let history = useHistory();
+  const goToPreviousPath = () => {
+    history.push("/today");
+  };
 
   return (
     <Form onSubmit={handleFormSubmit}>
@@ -61,12 +62,17 @@ function handleFormSubmit(event) {
       <Ziel
         type="text"
         name="ziel"
-        onChange={updateField}
-        value={fieldValue}
+        onChange={updateHabit}
+        value={habit.ziel}
+        placeholder={placeholderText}
       />
-     
-     <label htmlFor="häufigkeit">Häufigkeit</label>
-      <select name="häufigkeit" id="häufigkeit" onChange={updateFrequency} value={frequency}>
+      <label htmlFor="häufigkeit">Häufigkeit</label>
+      <select
+        name="häufigkeit"
+        id="häufigkeit"
+        onChange={updateHabit}
+        value={habit.häufigkeit}
+      >
         <option value=""> wähle die Häufigkeit </option>
         <option value="täglich">täglich</option>
         <option value="wöchentlich">wöchentlich</option>
@@ -75,9 +81,7 @@ function handleFormSubmit(event) {
       </select>
 
       <Button isPrimary>hinzufügen</Button>
-      <Button type="reset" onClick={() => setHabit(initialState)}>
-        abbrechen
-      </Button>
+      <Button onClick={goToPreviousPath}>zurück</Button>
     </Form>
   );
 }
@@ -87,12 +91,11 @@ const Button = styled.button`
   border-radius: 0.4rem;
   border: none;
   background: ${(props) =>
-    props.isPrimary ? 'var(--primary)' : 'var(--primary-transparent)'};
+    props.isPrimary ? "var(--primary)" : "var(--primary-transparent)"};
   cursor: pointer;
-  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
+  font-weight: ${(props) => (props.isPrimary ? "600" : "100")};
   font-size: 1.2rem;
 `;
-
 
 const Form = styled.form`
   display: grid;
@@ -129,5 +132,9 @@ const Form = styled.form`
 `;
 
 const Ziel = styled.input`
-height: 6rem;
-`
+  height: 6rem;
+
+  ::placeholder {
+    color: var(--secondary-dark);
+  }
+`;
