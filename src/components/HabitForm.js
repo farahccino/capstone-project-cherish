@@ -1,63 +1,59 @@
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
-import styled from 'styled-components/macro';
-
+import styled from "styled-components/macro";
 
 HabitForm.propTypes = {
-    headlineText: PropTypes.string,
-    onAddHabit: PropTypes.func,
-    häufigkeit: PropTypes.arrayOf(PropTypes.object),
-    setHabitToEdit: PropTypes.func,
-  };
-
+  headlineText: PropTypes.string,
+  onAddHabit: PropTypes.func,
+  häufigkeit: PropTypes.arrayOf(PropTypes.object),
+  setHabitToEdit: PropTypes.func,
+};
 
 export default function HabitForm({
-    headlineText,
-    onAddHabit,
-    onEditHabit,
-    häufigkeit,
-    setActivePage,
-    habitToEdit,
-    setHabitToEdit,
-    handleFormSubmit,
-    setShowsEditModal
-}) { 
+  headlineText,
+  onAddHabit,
+  onEditHabit,
+  häufigkeit,
+  setActivePage,
+  habitToEdit,
+  setHabitToEdit,
+  handleFormSubmit,
+  setShowsEditModal,
+}) {
+  const initialHabit = {
+    ziel: "",
+    häufigkeit: "",
+  };
 
-const initialHabit = {
-  ziel: '',
-  häufigkeit: '',
-}
+  const [habit, setHabit] = useState(habitToEdit ?? initialHabit);
+  const [isError, setIsError] = useState(false);
+  const [frequency, setFrequency] = useState("");
 
-const [habit, setHabit] = useState(habitToEdit ?? initialHabit);
-const [isError, setIsError] = useState(false);
-const [frequency, setFrequency] = useState('');
+  const placeholderText = `neues Ziel tippen...
+`;
 
+  function updateHabit(event) {
+    const fieldName = event.target.name;
+    let fieldValue = event.target.value;
+    setHabit({ ...habit, [fieldName]: fieldValue });
+  }
 
-const placeholderText = `neues Ziel tippen...
-`
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    if (habitToEdit) {
+      onEditHabit(habit);
+      setShowsEditModal(false);
+    } else {
+      onAddHabit({ ...habit, id: uuidv4() });
+    }
+  }
 
-function updateHabit(event) {
-  const fieldName = event.target.name;
-  let fieldValue = event.target.value;
-  setHabit({...habit, [fieldName]:fieldValue})
-}
-
-function handleFormSubmit(event) {
-  event.preventDefault();
-  if (habitToEdit) {
-    onEditHabit(habit)
-} else {
-  onAddHabit({...habit, id: uuidv4()})
-}
-  setShowsEditModal(false)
-}
-
-let history = useHistory();
+  let history = useHistory();
   const goToPreviousPath = () => {
-    history.goBack();
+    history.push("/today");
   };
 
   return (
@@ -70,8 +66,13 @@ let history = useHistory();
         value={habit.ziel}
         placeholder={placeholderText}
       />
-     <label htmlFor="häufigkeit">Häufigkeit</label>
-      <select name="häufigkeit" id="häufigkeit" onChange={updateHabit} value={habit.häufigkeit}>
+      <label htmlFor="häufigkeit">Häufigkeit</label>
+      <select
+        name="häufigkeit"
+        id="häufigkeit"
+        onChange={updateHabit}
+        value={habit.häufigkeit}
+      >
         <option value=""> wähle die Häufigkeit </option>
         <option value="täglich">täglich</option>
         <option value="wöchentlich">wöchentlich</option>
@@ -80,25 +81,21 @@ let history = useHistory();
       </select>
 
       <Button isPrimary>hinzufügen</Button>
-        <Button onClick={goToPreviousPath}>
-        Back
-      </Button>
+      <Button onClick={goToPreviousPath}>zurück</Button>
     </Form>
   );
 }
-
 
 const Button = styled.button`
   padding: 1.5rem;
   border-radius: 0.4rem;
   border: none;
   background: ${(props) =>
-    props.isPrimary ? 'var(--primary)' : 'var(--primary-transparent)'};
+    props.isPrimary ? "var(--primary)" : "var(--primary-transparent)"};
   cursor: pointer;
-  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
+  font-weight: ${(props) => (props.isPrimary ? "600" : "100")};
   font-size: 1.2rem;
 `;
-
 
 const Form = styled.form`
   display: grid;
@@ -134,12 +131,10 @@ const Form = styled.form`
   padding: 0.3rem;
 `;
 
-
-
 const Ziel = styled.input`
-    height: 6rem;
+  height: 6rem;
 
-    ::placeholder{
-        color: var(--secondary-dark);
-}
-`
+  ::placeholder {
+    color: var(--secondary-dark);
+  }
+`;
