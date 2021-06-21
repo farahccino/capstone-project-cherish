@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import moment from "moment";
 
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import FooterNavigation from "../components/FooterNavigation";
 import HabitForm from "../components/HabitForm";
-import Today from "../components/TodaysDate";
-import { formatDate } from "../components/TodaysDate";
 
 import editIcon from "../images/edit.svg";
 import deleteIcon from "../images/delete.svg";
@@ -33,6 +32,10 @@ export default function Home({
   const [editMode, setEditMode] = useState(false);
   const [showsEditModal, setShowsEditModal] = useState(false);
 
+  const current = moment();
+
+  const date = moment(current).format("dddd, MMMM Do YYYY");
+
   const checkbox = (value) => {
     return (
       <div>
@@ -54,7 +57,7 @@ export default function Home({
 
   return (
     <>
-      <Headline Today={Today}>{formatDate}</Headline>
+      <Headline>{date}</Headline>
       <EditButtonWrapper>
         {habits.length !== 0 &&
           (editMode === false ? (
