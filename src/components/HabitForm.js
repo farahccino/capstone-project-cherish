@@ -55,7 +55,7 @@ export default function HabitForm({
   const goToPreviousPath = () => {
     history.push("/today");
   };
-
+  console.log(initialHabit);
   return (
     <Form onSubmit={handleFormSubmit}>
       <label htmlFor="ZielName">Ziel</label>

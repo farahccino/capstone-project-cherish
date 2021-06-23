@@ -1,3 +1,5 @@
+import React, { useMemo } from "react";
+import { useTable } from "react-table";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import FooterNavigation from "../components/FooterNavigation";
@@ -11,26 +13,17 @@ export default function Goals({
   setActivePage,
   onEditHabit,
 }) {
-  const checkbox = (value) => {
-    return (
-      <div>
-        <input type="checkbox" />
-        <span id={id}>{value}</span>
-      </div>
-    );
-  };
-
   return (
     <>
-      <h1> This is the goals page! </h1>
-
-      <div>
-        {habits.map((habit) => {
-          return checkbox(habit.ziel);
-        })}
-      </div>
+      <Headline> Ziele </Headline>
 
       <FooterNavigation />
     </>
   );
 }
+
+const Headline = styled.h1`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+`;
