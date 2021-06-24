@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import moment from "moment";
-import "moment/locale/de";
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { format } from 'date-fns';
+import { de } from 'date-fns/locale';
 
-import FooterNavigation from "../components/FooterNavigation";
-import HabitForm from "../components/HabitForm";
+import FooterNavigation from '../components/FooterNavigation';
+import HabitForm from '../components/HabitForm';
 
-import editIcon from "../images/edit.svg";
-import deleteIcon from "../images/delete.svg";
-import returnIcon from "../images/return.svg";
+import editIcon from '../images/edit.svg';
+import deleteIcon from '../images/delete.svg';
+import returnIcon from '../images/return.svg';
 
 Home.propTypes = {
   habits: PropTypes.arrayOf(
@@ -27,15 +27,12 @@ export default function Home({
   id,
   habitToEdit,
   onSetHabitToEdit,
-  setActivePage,
   onEditHabit,
 }) {
   const [editMode, setEditMode] = useState(false);
   const [showsEditModal, setShowsEditModal] = useState(false);
 
-  const current = moment();
-
-  const date = moment(current).format("dddd, Do MMMM YYYY");
+  const date = format(new Date(), 'EEEE, dd.MM.yyyy', { locale: de });
 
   const checkbox = (value) => {
     return (
@@ -74,10 +71,10 @@ export default function Home({
 
       <div>
         {habits.map((habit) => {
-          if (habit.häufigkeit == "täglich") {
+          if (habit.frequency == 'täglich') {
             return (
               <>
-                {checkbox(habit.ziel)}
+                {checkbox(habit.goal)}
 
                 {editMode && (
                   <>
@@ -144,7 +141,6 @@ const EditButtonWrapper = styled.div`
 const Headline = styled.h1`
   text-align: center;
   color: var(--secondary-dark);
-  font-family: "Roboto";
 `;
 
 const HabitWrapper = styled.div`

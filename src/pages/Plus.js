@@ -1,14 +1,17 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components';
+import HabitForm from '../components/HabitForm';
+import FooterNavigation from '../components/FooterNavigation';
 
-import HabitForm from "../components/HabitForm";
-import FooterNavigation from "../components/FooterNavigation";
-
-export default function Plus({ onAddHabit, setHabitToEdit, onNavigate }) {
+export default function Plus({ onAddHabit, setHabitToEdit }) {
   return (
     <>
-      <h1> This is the plus page! </h1>
+      <Headline> Neues Ziel </Headline>
       <HabitForm onAddHabit={onAddHabit} setHabitToEdit={setHabitToEdit} />
       <FooterNavigation />
     </>
   );
 }
+
+const Headline = styled.h1`
+  text-align: center;
+`;

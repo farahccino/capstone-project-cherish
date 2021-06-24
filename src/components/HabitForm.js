@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
 HabitForm.propTypes = {
   headlineText: PropTypes.string,
@@ -22,15 +22,16 @@ export default function HabitForm({
   setHabitToEdit,
   handleFormSubmit,
   setShowsEditModal,
+  onDeleteHabit,
 }) {
   const initialHabit = {
-    ziel: "",
-    häufigkeit: "",
+    goal: '',
+    frequency: '',
   };
 
   const [habit, setHabit] = useState(habitToEdit ?? initialHabit);
   const [isError, setIsError] = useState(false);
-  const [frequency, setFrequency] = useState("");
+  const [frequency, setFrequency] = useState('');
 
   const placeholderText = `neues Ziel tippen...
 `;
@@ -53,25 +54,25 @@ export default function HabitForm({
 
   let history = useHistory();
   const goToPreviousPath = () => {
-    history.push("/today");
+    habitToEdit ? setShowsEditModal(false) : history.push('/today');
   };
 
   return (
     <Form onSubmit={handleFormSubmission}>
-      <label htmlFor="ZielName">Ziel</label>
+      <label htmlFor="goal">Ziel</label>
       <Ziel
         type="text"
-        name="ziel"
+        name="goal"
         onChange={handleUpdateHabit}
-        value={habit.ziel}
+        value={habit.goal}
         placeholder={placeholderText}
       />
-      <label htmlFor="häufigkeit">Häufigkeit</label>
+      <label htmlFor="frequency">Häufigkeit</label>
       <select
-        name="häufigkeit"
-        id="häufigkeit"
+        name="frequency"
+        id="frequency"
         onChange={handleUpdateHabit}
-        value={habit.häufigkeit}
+        value={habit.frequency}
       >
         <option value=""> wähle die Häufigkeit </option>
         <option value="täglich">täglich</option>
@@ -79,9 +80,15 @@ export default function HabitForm({
         <option value="zweiwöchentlich">zweiwöchentlich</option>
         <option value="monatlich">monatlich</option>
       </select>
-
-      <Button isPrimary>hinzufügen</Button>
-      <Button onClick={goToPreviousPath}>zurück</Button>
+      <Button isPrimary>{habitToEdit ? 'speichern' : 'hinzufügen'}</Button>
+      <Button type="button" onClick={goToPreviousPath}>
+        zurück
+      </Button>
+      {habitToEdit && (
+        <Button type="button" onClick={() => onDeleteHabit(habit.id)}>
+          löschen
+        </Button>
+      )}
     </Form>
   );
 }
@@ -91,9 +98,9 @@ const Button = styled.button`
   border-radius: 0.4rem;
   border: none;
   background: ${(props) =>
-    props.isPrimary ? "var(--primary)" : "var(--primary-transparent)"};
+    props.isPrimary ? 'var(--primary)' : 'var(--primary-transparent)'};
   cursor: pointer;
-  font-weight: ${(props) => (props.isPrimary ? "600" : "100")};
+  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
   font-size: 1.2rem;
 `;
 

@@ -1,8 +1,5 @@
-const validateZiel = (ziel) => ziel.length >= 2;
-
+const validateGoal = (goal) => goal.length >= 2;
 
 export default function validateHabit(habit) {
-  return (
-    validateZiel(habit.ziel)
-  );
+  return validateGoal(habit.goal);
 }

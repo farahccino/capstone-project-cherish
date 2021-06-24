@@ -1,25 +1,25 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { Switch, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Switch, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-import { updateLocalStorage, loadFromLocalStorage } from "./lib/localStorage";
+import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
-import Home from "./pages/Home";
-import Plus from "./pages/Plus";
-import Goals from "./pages/Goals";
-import Landing from "./pages/Landing";
+import Home from './pages/Home';
+import Plus from './pages/Plus';
+import Goals from './pages/Goals';
+import Landing from './pages/Landing';
 
 function App() {
-  const [frequencyName, setFrequencyName] = useState("");
-  const [activePage, setActivePage] = useState("today");
+  const [frequencyName, setFrequencyName] = useState('');
+  const [activePage, setActivePage] = useState('today');
   const [habitToEdit, setHabitToEdit] = useState(null);
 
   const [habits, setHabits] = useState(
-    loadFromLocalStorage("cherishHabits") ?? []
+    loadFromLocalStorage('cherishHabits') ?? []
   );
   useEffect(() => {
-    updateLocalStorage("cherishHabits", habits);
+    updateLocalStorage('cherishHabits', habits);
   }, [habits]);
 
   function addHabit(newHabit) {
@@ -30,7 +30,7 @@ function App() {
     const upToDateHabits = habits.filter(
       (habit) => habit.id !== editedHabit.id
     );
-    setHabits([...upToDateHabits, editedHabit]);
+    setHabits([editedHabit, ...upToDateHabits]);
   }
 
   function handleActivePage(page) {
@@ -63,7 +63,13 @@ function App() {
               />
             </Route>
             <Route path="/goals">
-              <Goals />
+              <Goals
+                habits={habits}
+                setHabits={setHabits}
+                onSaveHabit={editHabit}
+                onSetHabitToEdit={setHabitToEdit}
+                habitToEdit={habitToEdit}
+              />
             </Route>
           </Switch>
         </MainContainer>
@@ -75,7 +81,7 @@ function App() {
 export default App;
 
 const Headline = styled.h1`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   text-align: center;
   color: ivory;
 `;
