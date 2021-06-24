@@ -135,16 +135,12 @@ const EditButtonWrapper = styled.div`
   align-items: end;
   background-color: transparent;
   border: none;
-  display: flex;
   justify-content: end;
 `;
 
 const Headline = styled.h1`
-  align-items: center;
+  text-align: center;
   color: var(--secondary-dark);
-  display: flex;
-  justify-content: center;
-  font-family: 'Roboto';
 `;
 
 const HabitWrapper = styled.div`
