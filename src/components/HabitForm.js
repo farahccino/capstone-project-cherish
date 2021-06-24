@@ -41,7 +41,7 @@ export default function HabitForm({
     setHabit({ ...habit, [fieldName]: fieldValue });
   }
 
-  function handleFormSubmit(event) {
+  function handleFormSubmission(event) {
     event.preventDefault();
     if (habitToEdit) {
       onEditHabit(habit);
@@ -57,7 +57,7 @@ export default function HabitForm({
   };
 
   return (
-    <Form onSubmit={handleFormSubmit}>
+    <Form onSubmit={handleFormSubmission}>
       <label htmlFor="ZielName">Ziel</label>
       <Ziel
         type="text"
