@@ -18,7 +18,6 @@ function App() {
   const [habits, setHabits] = useState(
     loadFromLocalStorage("cherishHabits") ?? []
   );
-  console.log(habits);
   useEffect(() => {
     updateLocalStorage("cherishHabits", habits);
   }, [habits]);
@@ -41,7 +40,7 @@ function App() {
   return (
     <>
       <div>
-        <Headline></Headline>
+        <Headline />
         <MainContainer>
           <Switch>
             <Route exact path="/">
