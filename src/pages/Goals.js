@@ -1,17 +1,10 @@
-import { useState } from "react";
-import styled from "styled-components";
-import FooterNavigation from "../components/FooterNavigation";
-import BasicTable from "../components/BasicTable";
-import HabitForm from "../components/HabitForm";
+import { useState } from 'react';
+import styled from 'styled-components';
+import FooterNavigation from '../components/FooterNavigation';
+import BasicTable from '../components/BasicTable';
+import HabitForm from '../components/HabitForm';
 
-export default function Goals({
-  habits,
-  setHabits,
-  id,
-  onSetHabitToEdit,
-  setActivePage,
-  onSaveHabit,
-}) {
+export default function Goals({ habits, setHabits, onSaveHabit }) {
   const [showsEditModal, setShowsEditModal] = useState(false);
   const [habitToEdit, setHabitToEdit] = useState(null);
 

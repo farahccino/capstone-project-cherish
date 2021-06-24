@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export default function BasicTable({ habits, onEditHabit }) {
-  console.log(habits, "habits");
   return (
     <Table>
       <thead>
@@ -15,8 +14,8 @@ export default function BasicTable({ habits, onEditHabit }) {
         {habits.map((habit) => {
           return (
             <tr onClick={() => onEditHabit(habit)}>
-              <td>{habit.ziel}</td>
-              <td>{habit.häufigkeit}</td>
+              <td>{habit.goal}</td>
+              <td>{habit.frequency}</td>
             </tr>
           );
         })}
