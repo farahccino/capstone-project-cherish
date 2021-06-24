@@ -6,13 +6,12 @@ import { useState, useEffect } from 'react';
 import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
 import Home from './pages/Home';
+import Tracker from './pages/Tracker';
 import Plus from './pages/Plus';
 import Goals from './pages/Goals';
 import Landing from './pages/Landing';
 
 function App() {
-  const [frequencyName, setFrequencyName] = useState('');
-  const [activePage, setActivePage] = useState('today');
   const [habitToEdit, setHabitToEdit] = useState(null);
 
   const [habits, setHabits] = useState(
@@ -33,10 +32,6 @@ function App() {
     setHabits([editedHabit, ...upToDateHabits]);
   }
 
-  function handleActivePage(page) {
-    setActivePage(page);
-  }
-
   return (
     <>
       <div>
@@ -55,12 +50,11 @@ function App() {
                 habitToEdit={habitToEdit}
               />
             </Route>
+            <Route path="/tracker">
+              <Tracker />
+            </Route>
             <Route path="/add-goal">
-              <Plus
-                onAddHabit={addHabit}
-                setHabitToEdit={setHabitToEdit}
-                onNavigate={handleActivePage}
-              />
+              <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} />
             </Route>
             <Route path="/goals">
               <Goals

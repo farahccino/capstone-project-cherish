@@ -48,11 +48,6 @@ export default function Home({
     setHabits(remainingHabits);
   }
 
-  function handleEditClick(id) {
-    const habitToEdit = habits.filter((habit) => habit.id === habitToEdit.id);
-    setHabits(habitToEdit);
-  }
-
   return (
     <>
       <Headline>{date}</Headline>
@@ -71,7 +66,7 @@ export default function Home({
 
       <div>
         {habits.map((habit) => {
-          if (habit.frequency == 'täglich') {
+          if (habit.frequency === 'täglich') {
             return (
               <>
                 {checkbox(habit.goal)}
@@ -107,7 +102,7 @@ export default function Home({
         </HabitWrapper>
       )}
 
-      <NavLink to="/tracker" className="link">
+      <NavLink to="/tracker" style={{ textDecoration: 'none' }}>
         <ButtonWrapper>
           <Button>zum Tracker</Button>
         </ButtonWrapper>
@@ -123,7 +118,6 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 1rem;
   padding: 0.5rem;
-  text-decoration: none;
 `;
 
 const ButtonWrapper = styled.section`
