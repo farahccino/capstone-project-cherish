@@ -22,6 +22,7 @@ export default function HabitForm({
   setHabitToEdit,
   handleFormSubmit,
   setShowsEditModal,
+  onDeleteHabit,
 }) {
   const initialHabit = {
     ziel: "",
@@ -53,9 +54,9 @@ export default function HabitForm({
 
   let history = useHistory();
   const goToPreviousPath = () => {
-    history.push("/today");
+    habitToEdit ? setShowsEditModal(false) : history.push("/today");
   };
-  console.log(initialHabit);
+
   return (
     <Form onSubmit={handleFormSubmit}>
       <label htmlFor="ZielName">Ziel</label>
@@ -79,9 +80,15 @@ export default function HabitForm({
         <option value="zweiwöchentlich">zweiwöchentlich</option>
         <option value="monatlich">monatlich</option>
       </select>
-
-      <Button isPrimary>hinzufügen</Button>
-      <Button onClick={goToPreviousPath}>zurück</Button>
+      <Button isPrimary>{habitToEdit ? "speichern" : "hinzufügen"}</Button>
+      <Button type="button" onClick={goToPreviousPath}>
+        zurück
+      </Button>
+      {habitToEdit && (
+        <Button type="button" onClick={() => onDeleteHabit(habit.id)}>
+          löschen
+        </Button>
+      )}
     </Form>
   );
 }

@@ -30,7 +30,7 @@ function App() {
     const upToDateHabits = habits.filter(
       (habit) => habit.id !== editedHabit.id
     );
-    setHabits([...upToDateHabits, editedHabit]);
+    setHabits([editedHabit, ...upToDateHabits]);
   }
 
   function handleActivePage(page) {
@@ -66,7 +66,7 @@ function App() {
               <Goals
                 habits={habits}
                 setHabits={setHabits}
-                onEditHabit={editHabit}
+                onSaveHabit={editHabit}
                 onSetHabitToEdit={setHabitToEdit}
                 habitToEdit={habitToEdit}
               />
