@@ -107,6 +107,11 @@ export default function Home({
           <Button>zum Tracker</Button>
         </ButtonWrapper>
       </NavLink>
+      <NavLink to="/" style={{ textDecoration: 'none' }}>
+        <ButtonWrapper>
+          <Button>zurück</Button>
+        </ButtonWrapper>
+      </NavLink>
       <FooterNavigation />
     </>
   );

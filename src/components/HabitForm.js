@@ -74,14 +74,14 @@ export default function HabitForm({
         <option value="monatlich">monatlich</option>
       </select>
       <Button isPrimary>{habitToEdit ? 'speichern' : 'hinzufügen'}</Button>
-      <Button type="button" onClick={goToPreviousPath}>
-        zurück
-      </Button>
       {habitToEdit && (
         <Button type="button" onClick={() => onDeleteHabit(habit.id)}>
           löschen
         </Button>
       )}
+      <Button type="button" onClick={goToPreviousPath}>
+        zurück
+      </Button>
     </Form>
   );
 }

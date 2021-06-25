@@ -11,8 +11,8 @@ export default function Landing() {
   );
 
   useEffect(() => {
-    saveToLocalStorage('currentMood', savedEmoji);
-  }, [savedEmoji]);
+    saveToLocalStorage('currentMood', emoji);
+  }, [emoji]);
 
   function placeIntoStorage() {
     Emoji.isClicked = !Emoji.isClicked;
