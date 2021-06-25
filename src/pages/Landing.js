@@ -1,22 +1,24 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Logo from '../images/cherish.svg';
+import { format } from 'date-fns';
 
 export default function Landing() {
-  const [emoji, setEmoji] = useState([]);
-  const [savedEmoji, setSavedEmoji] = useState(
+  const [currentMood, setCurrentMood] = useState(
     loadFromLocalStorage('currentMood') ?? []
   );
 
-  useEffect(() => {
-    saveToLocalStorage('currentMood', emoji);
-  }, [emoji]);
+  let history = useHistory();
 
-  function placeIntoStorage() {
-    Emoji.isClicked = !Emoji.isClicked;
-    setSavedEmoji(emoji);
+  useEffect(() => {
+    saveToLocalStorage('currentMood', currentMood);
+  }, [currentMood]);
+
+  function placeIntoStorage(emoji) {
+    const today = format(new Date('2021-07-12'), 'yyyy-MM-dd');
+    setCurrentMood([{ [today]: emoji }, ...currentMood]);
   }
 
   function saveToLocalStorage(key, data) {
@@ -38,36 +40,15 @@ export default function Landing() {
       </LogoWrapper>
       <Greeting>Wie geht es Dir heute?</Greeting>
       <EmojiWrapper>
-        <NavLink to="/today" className="link">
-          <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}>
-            {' '}
-            😞{' '}
-          </Emoji>
-        </NavLink>
-        <NavLink to="/today" className="link">
-          <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}>
-            {' '}
-            😕{' '}
-          </Emoji>
-        </NavLink>
-        <NavLink to="/today" className="link">
-          <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}>
-            {' '}
-            😐{' '}
-          </Emoji>
-        </NavLink>
-        <NavLink to="/today" className="link">
-          <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}>
-            {' '}
-            🙂{' '}
-          </Emoji>
-        </NavLink>
-        <NavLink to="/today" className="link">
-          <Emoji isClicked={savedEmoji} onClick={() => placeIntoStorage(emoji)}>
-            {' '}
-            😄{' '}
-          </Emoji>
-        </NavLink>
+        <Emoji onClick={() => placeIntoStorage('😞')}> 😞 </Emoji>
+
+        <Emoji onClick={() => placeIntoStorage('😕')}> 😕 </Emoji>
+
+        <Emoji onClick={() => placeIntoStorage('😐')}> 😐 </Emoji>
+
+        <Emoji onClick={() => placeIntoStorage('🙂')}> 🙂 </Emoji>
+
+        <Emoji onClick={() => placeIntoStorage('😄')}> 😄 </Emoji>
       </EmojiWrapper>
     </>
   );
