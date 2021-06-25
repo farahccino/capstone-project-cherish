@@ -11,8 +11,6 @@ import Goals from './pages/Goals';
 import Landing from './pages/Landing';
 
 function App() {
-  const [frequencyName, setFrequencyName] = useState('');
-  const [activePage, setActivePage] = useState('today');
   const [habitToEdit, setHabitToEdit] = useState(null);
 
   const [habits, setHabits] = useState(
@@ -31,10 +29,6 @@ function App() {
       (habit) => habit.id !== editedHabit.id
     );
     setHabits([editedHabit, ...upToDateHabits]);
-  }
-
-  function handleActivePage(page) {
-    setActivePage(page);
   }
 
   return (
@@ -56,11 +50,7 @@ function App() {
               />
             </Route>
             <Route path="/add-goal">
-              <Plus
-                onAddHabit={addHabit}
-                setHabitToEdit={setHabitToEdit}
-                onNavigate={handleActivePage}
-              />
+              <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} />
             </Route>
             <Route path="/goals">
               <Goals

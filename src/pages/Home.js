@@ -48,11 +48,6 @@ export default function Home({
     setHabits(remainingHabits);
   }
 
-  function handleEditClick(id) {
-    const habitToEdit = habits.filter((habit) => habit.id === habitToEdit.id);
-    setHabits(habitToEdit);
-  }
-
   return (
     <>
       <Headline>{date}</Headline>
@@ -71,7 +66,7 @@ export default function Home({
 
       <div>
         {habits.map((habit) => {
-          if (habit.frequency == 'täglich') {
+          if (habit.frequency === 'täglich') {
             return (
               <>
                 {checkbox(habit.goal)}
@@ -94,6 +89,7 @@ export default function Home({
               </>
             );
           }
+          return null;
         })}
       </div>
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,8 +30,6 @@ export default function HabitForm({
   };
 
   const [habit, setHabit] = useState(habitToEdit ?? initialHabit);
-  const [isError, setIsError] = useState(false);
-  const [frequency, setFrequency] = useState('');
 
   const placeholderText = `neues Ziel tippen...
 `;

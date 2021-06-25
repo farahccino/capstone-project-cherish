@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Logo from '../images/cherish.svg';
 
 export default function Landing() {
-  const [emoji, setEmoji] = useState([]);
+  const [emoji] = useState([]);
   const [savedEmoji, setSavedEmoji] = useState(
     loadFromLocalStorage('currentMood') ?? []
   );
