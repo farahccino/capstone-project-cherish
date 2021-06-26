@@ -19,8 +19,8 @@ export default function Landing() {
     setCurrentMood([{ [today]: emoji }, ...currentMood]);
   }
 
-  function saveToLocalStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
+  function saveToLocalStorage(currentMood, data) {
+    localStorage.setItem(currentMood, JSON.stringify(data));
   }
 
   function loadFromLocalStorage(key) {

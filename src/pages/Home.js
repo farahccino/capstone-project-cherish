@@ -12,6 +12,7 @@ import HabitForm from '../components/HabitForm';
 import editIcon from '../images/edit.svg';
 import deleteIcon from '../images/delete.svg';
 import returnIcon from '../images/return.svg';
+import trackerIcon from '../images/tracker.svg';
 
 Home.propTypes = {
   habits: PropTypes.arrayOf(
@@ -51,18 +52,19 @@ export default function Home({
   return (
     <>
       <Headline>{date}</Headline>
-      <EditButtonWrapper>
-        {habits.length !== 0 &&
-          (editMode === false ? (
-            <IconButton onClick={() => setEditMode(true)}>
-              <img src={editIcon} alt="" height="20px" />
-            </IconButton>
-          ) : (
-            <IconButton align="right" onClick={() => setEditMode(false)}>
-              <img src={returnIcon} alt="" height="20px" />
-            </IconButton>
-          ))}
-      </EditButtonWrapper>
+
+      {habits.length !== 0 &&
+        (editMode === false ? (
+          <EditButton onClick={() => setEditMode(true)}>
+            edit mode
+            <img src={editIcon} alt="" height="20px" />
+          </EditButton>
+        ) : (
+          <EditButton align="right" onClick={() => setEditMode(false)}>
+            <img src={returnIcon} alt="" height="20px" />
+            zurück
+          </EditButton>
+        ))}
 
       <div>
         {habits.map((habit) => {
@@ -73,17 +75,19 @@ export default function Home({
 
                 {editMode && (
                   <>
-                    <IconButton onClick={() => handleDeleteClick(habit.id)}>
-                      <img src={deleteIcon} alt="löschen" height="16" />
-                    </IconButton>
-                    <IconButton
-                      onClick={() => {
-                        setShowsEditModal(true);
-                        onSetHabitToEdit(habit);
-                      }}
-                    >
-                      <img src={editIcon} alt="bearbeiten" height="16" />
-                    </IconButton>
+                    <ButtonWrapper>
+                      <DeleteButton onClick={() => handleDeleteClick(habit.id)}>
+                        <img src={deleteIcon} alt="löschen" height="16" />
+                      </DeleteButton>
+                      <ModalButton
+                        onClick={() => {
+                          setShowsEditModal(true);
+                          onSetHabitToEdit(habit);
+                        }}
+                      >
+                        <img src={editIcon} alt="bearbeiten" height="16" />
+                      </ModalButton>
+                    </ButtonWrapper>
                   </>
                 )}
               </>
@@ -104,10 +108,14 @@ export default function Home({
       )}
 
       <NavLink to="/tracker" style={{ textDecoration: 'none' }}>
-        <TrackerButton>zum Tracker</TrackerButton>
+        <TrackerButton>
+          zum Tracker <img src={trackerIcon} alt="tracker icon" height="20px" />
+        </TrackerButton>
       </NavLink>
       <NavLink to="/" style={{ textDecoration: 'none' }}>
-        <BackButton>zurück</BackButton>
+        <BackButton>
+          zurück <img src={returnIcon} alt="return icon" height="20px" />
+        </BackButton>
       </NavLink>
       <FooterNavigation />
     </>
@@ -142,13 +150,6 @@ const TrackerButton = styled.button`
   width: 9rem;
 `;
 
-const EditButtonWrapper = styled.div`
-  align-items: end;
-  background-color: transparent;
-  border: none;
-  justify-content: end;
-`;
-
 const Headline = styled.h1`
   color: var(--secondary-dark);
   text-align: center;
@@ -167,7 +168,35 @@ const HabitWrapper = styled.div`
   z-index: 10;
 `;
 
-const IconButton = styled.button`
+const EditButton = styled.button`
+  align-items: center;
+  background-color: transparent;
   border: none;
   border-radius: 100vw;
+  top: 14%;
+  cursor: pointer;
+  display: flex;
+  right: 9%;
+  position: absolute;
+`;
+
+const DeleteButton = styled.button`
+  background-color: transparent;
+  border: none;
+  border-radius: 100vw;
+  cursor: pointer;
+  right: 8%;
+  top: 20%;
+`;
+const ModalButton = styled.button`
+  background-color: transparent;
+  border: none;
+  border-radius: 100vw;
+  cursor: pointer;
+  right: 13%;
+  top: 20%;
+`;
+
+const ButtonWrapper = styled.div`
+  display: inline-block;
 `;

@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import Grid from '../components/Grid';
+import returnIcon from '../images/return.svg';
 
 export default function Tracker() {
   return (
@@ -9,7 +10,9 @@ export default function Tracker() {
       <Headline>Tracker</Headline>
       <Grid />
       <NavLink to="/today" style={{ textDecoration: 'none' }}>
-        <Button>zurück</Button>
+        <Button>
+          zurück <img src={returnIcon} alt="return icon" height="20px" />
+        </Button>
       </NavLink>
     </div>
   );

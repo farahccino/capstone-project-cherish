@@ -1,9 +1,14 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import { v4 as uuidv4 } from 'uuid';
 
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
+
+import checkIcon from '../images/check.svg';
+import deleteIcon from '../images/delete.svg';
+import returnIcon from '../images/return.svg';
 
 HabitForm.propTypes = {
   headlineText: PropTypes.string,
@@ -73,14 +78,17 @@ export default function HabitForm({
         <option value="zweiwöchentlich">zweiwöchentlich</option>
         <option value="monatlich">monatlich</option>
       </select>
-      <Button isPrimary>{habitToEdit ? 'speichern' : 'hinzufügen'}</Button>
+      <Button isPrimary>
+        {habitToEdit ? 'speichern' : 'hinzufügen'}{' '}
+        <img src={checkIcon} alt="check icon" height="16" />
+      </Button>
       {habitToEdit && (
         <Button type="button" onClick={() => onDeleteHabit(habit.id)}>
-          löschen
+          löschen <img src={deleteIcon} alt="delete icon" height="16" />
         </Button>
       )}
       <Button type="button" onClick={goToPreviousPath}>
-        zurück
+        zurück <img src={returnIcon} alt="return icon" height="16" />
       </Button>
     </Form>
   );
