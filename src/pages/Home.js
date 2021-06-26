@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
 
@@ -104,31 +104,42 @@ export default function Home({
       )}
 
       <NavLink to="/tracker" style={{ textDecoration: 'none' }}>
-        <ButtonWrapper>
-          <Button>zum Tracker</Button>
-        </ButtonWrapper>
+        <TrackerButton>zum Tracker</TrackerButton>
       </NavLink>
       <NavLink to="/" style={{ textDecoration: 'none' }}>
-        <ButtonWrapper>
-          <Button>zurück</Button>
-        </ButtonWrapper>
+        <BackButton>zurück</BackButton>
       </NavLink>
       <FooterNavigation />
     </>
   );
 }
 
-const Button = styled.button`
+const BackButton = styled.button`
+  align-items: center;
   background-color: transparent;
   border-radius: 100vw;
+  bottom: 15%;
   cursor: pointer;
-  font-size: 1rem;
+  display: flex;
+  justify-content: space-around;
+  left: 10%;
   padding: 0.5rem;
+  position: absolute;
+  width: 9rem;
 `;
 
-const ButtonWrapper = styled.section`
+const TrackerButton = styled.button`
   align-items: center;
+  background-color: transparent;
+  border-radius: 100vw;
+  bottom: 15%;
+  cursor: pointer;
   display: flex;
+  justify-content: space-around;
+  right: 10%;
+  padding: 0.5rem;
+  position: absolute;
+  width: 9rem;
 `;
 
 const EditButtonWrapper = styled.div`
@@ -139,21 +150,20 @@ const EditButtonWrapper = styled.div`
 `;
 
 const Headline = styled.h1`
-  text-align: center;
   color: var(--secondary-dark);
+  text-align: center;
 `;
 
 const HabitWrapper = styled.div`
+  align-items: center;
   backdrop-filter: blur(20px);
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
   bottom: 0;
-  right: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   z-index: 10;
 `;
 

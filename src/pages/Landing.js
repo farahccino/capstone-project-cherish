@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Logo from '../images/cherish.svg';
 import { format } from 'date-fns';
@@ -10,14 +10,12 @@ export default function Landing() {
     loadFromLocalStorage('currentMood') ?? []
   );
 
-  let history = useHistory();
-
   useEffect(() => {
     saveToLocalStorage('currentMood', currentMood);
   }, [currentMood]);
 
   function placeIntoStorage(emoji) {
-    const today = format(new Date('2021-07-12'), 'yyyy-MM-dd');
+    const today = format(new Date(), 'yyyy-MM-dd');
     setCurrentMood([{ [today]: emoji }, ...currentMood]);
   }
 
@@ -50,6 +48,7 @@ export default function Landing() {
 
         <Emoji onClick={() => placeIntoStorage('😄')}> 😄 </Emoji>
       </EmojiWrapper>
+      <Link to="/today">homepage</Link>
     </>
   );
 }

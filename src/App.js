@@ -75,9 +75,9 @@ function App() {
 export default App;
 
 const Headline = styled.h1`
+  color: ivory;
   font-family: 'Roboto';
   text-align: center;
-  color: ivory;
 `;
 
 const MainContainer = styled.main``;

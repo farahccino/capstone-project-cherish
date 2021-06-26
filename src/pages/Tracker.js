@@ -1,34 +1,36 @@
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+
+import Grid from '../components/Grid';
 
 export default function Tracker() {
   return (
     <div>
       <Headline>Tracker</Headline>
+      <Grid />
       <NavLink to="/today" style={{ textDecoration: 'none' }}>
-        <ButtonWrapper>
-          <Button>zurück</Button>
-        </ButtonWrapper>
+        <Button>zurück</Button>
       </NavLink>
     </div>
   );
 }
 
 const Button = styled.button`
+  align-items: center;
   background-color: transparent;
   border-radius: 100vw;
+  bottom: 2%;
   cursor: pointer;
-  font-size: 1rem;
-  margin: 0 auto;
-  padding: 0.5rem;
-`;
-
-const ButtonWrapper = styled.section`
-  align-items: center;
   display: flex;
+  font-size: 1.75rem;
+  justify-content: space-around;
+  padding: 0.5rem;
+  position: absolute;
+  right: 30%;
+  width: 9rem;
 `;
 
 const Headline = styled.h1`
-  text-align: center;
   color: var(--secondary-dark);
+  text-align: center;
 `;

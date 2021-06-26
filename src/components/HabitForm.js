@@ -87,14 +87,14 @@ export default function HabitForm({
 }
 
 const Button = styled.button`
-  padding: 1.5rem;
-  border-radius: 0.4rem;
-  border: none;
   background: ${(props) =>
     props.isPrimary ? 'var(--primary)' : 'var(--primary-transparent)'};
+  border: none;
+  border-radius: 0.4rem;
   cursor: pointer;
-  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
   font-size: 1.2rem;
+  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
+  padding: 1.5rem;
 `;
 
 const Form = styled.form`

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import FooterNavigation from '../components/FooterNavigation';
 import BasicTable from '../components/BasicTable';
 import HabitForm from '../components/HabitForm';
@@ -39,16 +39,15 @@ export default function Goals({ habits, setHabits, onSaveHabit }) {
 }
 
 const HabitWrapper = styled.div`
+  align-items: center;
   backdrop-filter: blur(20px);
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
   bottom: 0;
-  right: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   z-index: 10;
 `;
 
