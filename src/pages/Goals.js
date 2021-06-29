@@ -52,7 +52,9 @@ const HabitWrapper = styled.div`
 `;
 
 const Headline = styled.h1`
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  color: var(--font);
+  text-shadow: -1px 1px 0px var(--font-shadow),
+    -2px 2px 0px var(--font-shadow-medium), -3px 3px 0px var(--font-shadow-dark);
+  font-weight: 400;
+  text-align: center;
 `;

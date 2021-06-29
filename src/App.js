@@ -11,7 +11,7 @@ import Plus from './pages/Plus';
 import Goals from './pages/Goals';
 import Landing from './pages/Landing';
 
-function App() {
+export default function App() {
   const [habitToEdit, setHabitToEdit] = useState(null);
 
   const [habits, setHabits] = useState(
@@ -51,7 +51,7 @@ function App() {
               />
             </Route>
             <Route path="/tracker">
-              <Tracker />
+              <Tracker habits={habits} />
             </Route>
             <Route path="/add-goal">
               <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} />
@@ -71,8 +71,6 @@ function App() {
     </>
   );
 }
-
-export default App;
 
 const Headline = styled.h1`
   color: ivory;

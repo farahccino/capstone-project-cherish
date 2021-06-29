@@ -8,21 +8,32 @@ import goals from '../images/goals.svg';
 export default function FooterNavigation({ isStatic }) {
   return (
     <NavWrapper isStatic={isStatic}>
-      <NavLink to="/today">
-        <img src={today} alt="Today page" width="64" height="64" />
+      <NavLink
+        to="/today"
+        activeClassName="active"
+        style={{ textDecoration: 'none' }}
+      >
+        <img src={today} alt="Today page" width="54" height="54" />
+        <Subtitle>Heute</Subtitle>
       </NavLink>
-      <NavLink to="/add-goal">
-        <img src={plus} alt="Adds a new entry" width="64" height="64" />
+      <NavLink to="/add-goal" style={{ textDecoration: 'none' }}>
+        <img src={plus} alt="Adds a new entry" width="54" height="54" />
+        <Subtitle>Neu</Subtitle>
       </NavLink>
-      <NavLink to="/goals">
-        <img src={goals} alt="Goals page" width="64" height="64" />
+      <NavLink to="/goals" style={{ textDecoration: 'none' }}>
+        <img src={goals} alt="Goals page" width="54" height="54" />
+        <Subtitle>Ziele</Subtitle>
       </NavLink>
     </NavWrapper>
   );
 }
 
 const NavWrapper = styled.footer`
-  background-color: var(--secondary);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(1px);
+  border-top: 1px solid lemonchiffon;
+  box-shadow: 0 0 6px 3px var(--glow), 0 0 10px 6px var(--glow),
+    0 0 140px 90px var(--glow-fade);
   bottom: 0;
   display: flex;
   justify-content: space-around;
@@ -30,4 +41,12 @@ const NavWrapper = styled.footer`
   padding: 0.3rem;
   position: ${(props) => (props.isStatic ? 'static' : 'fixed')};
   width: 100%;
+`;
+
+const Subtitle = styled.p`
+  color: var(--font);
+  font-size: 1rem;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
 `;

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="57.401" height="65.173" viewBox="0 0 57.401 65.173">
   <g id="Icon_feather-skip-back" data-name="Icon feather-skip-back" transform="translate(-6 -4.5)">
-    <path id="Pfad_9" data-name="Pfad 9" d="M52.358,68.173,13.5,37.086,52.358,6Z" transform="translate(9.543 0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-    <path id="Pfad_10" data-name="Pfad 10" d="M7.5,61.9V7.5" transform="translate(0 2.386)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Pfad_9" data-name="Pfad 9" d="M52.358,68.173,13.5,37.086,52.358,6Z" transform="translate(9.543 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Pfad_10" data-name="Pfad 10" d="M7.5,61.9V7.5" transform="translate(0 2.386)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
   </g>
 </svg>

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
+
 import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
 
@@ -37,10 +38,10 @@ export default function Home({
 
   const checkbox = (value) => {
     return (
-      <div>
-        <input type="checkbox" />
+      <CheckboxWrapper>
+        <Checkbox type="checkbox" />
         <span id={id}>{value}</span>
-      </div>
+      </CheckboxWrapper>
     );
   };
 
@@ -57,11 +58,11 @@ export default function Home({
         (editMode === false ? (
           <EditButton onClick={() => setEditMode(true)}>
             edit mode
-            <img src={editIcon} alt="" height="20px" />
+            <img src={editIcon} alt="edit icon" height="20px" />
           </EditButton>
         ) : (
           <EditButton align="right" onClick={() => setEditMode(false)}>
-            <img src={returnIcon} alt="" height="20px" />
+            <img src={returnIcon} alt="return icon" height="20px" />
             zurück
           </EditButton>
         ))}
@@ -122,37 +123,83 @@ export default function Home({
   );
 }
 
+const Headline = styled.h1`
+  color: var(--font);
+  text-shadow: -1px 1px 0px var(--font-shadow),
+    -2px 2px 0px var(--font-shadow-medium), -3px 3px 0px var(--font-shadow-dark);
+  font-weight: 400;
+  text-align: center;
+`;
+
+const Checkbox = styled.input`
+  appearance: none;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 100vw;
+  height: 1rem;
+  margin-right: 0.7rem;
+  position: absolute;
+  right: 0.4rem;
+  width: 1rem;
+
+  :checked {
+    background: teal;
+  }
+`;
+
+const CheckboxWrapper = styled.div`
+  align-items: center;
+  backdrop-filter: blur(2px);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0.75rem;
+  display: flex;
+  height: 3.5rem;
+  margin: 0.5rem 0.75rem;
+  padding: 0.45rem 0.75rem;
+  position: relative;
+  top: 40%;
+`;
+
 const BackButton = styled.button`
   align-items: center;
-  background-color: transparent;
-  border-radius: 100vw;
-  bottom: 15%;
+  backdrop-filter: blur(1px);
+  background-color: hsla(330, 100%, 71%, 0.7);
+  border: 1px solid ivory;
+  border-radius: 1rem;
+  bottom: 19%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  color: white;
   cursor: pointer;
   display: flex;
+  font-weight: 5;
   justify-content: space-around;
   left: 10%;
   padding: 0.5rem;
-  position: absolute;
+  position: fixed;
   width: 9rem;
 `;
 
 const TrackerButton = styled.button`
   align-items: center;
-  background-color: transparent;
-  border-radius: 100vw;
-  bottom: 15%;
+  backdrop-filter: blur(1px);
+  background-color: hsla(330, 100%, 71%, 0.7);
+  border: 1px solid ivory;
+  border-radius: 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  bottom: 19%;
+  color: white;
   cursor: pointer;
   display: flex;
+  font-weight: 5;
   justify-content: space-around;
   right: 10%;
   padding: 0.5rem;
-  position: absolute;
+  position: fixed;
   width: 9rem;
-`;
-
-const Headline = styled.h1`
-  color: var(--secondary-dark);
-  text-align: center;
 `;
 
 const HabitWrapper = styled.div`
@@ -173,11 +220,13 @@ const EditButton = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 100vw;
-  top: 14%;
+  color: var(--font);
   cursor: pointer;
   display: flex;
   right: 9%;
   position: absolute;
+  top: 14%;
+  z-index: 100;
 `;
 
 const DeleteButton = styled.button`
@@ -188,6 +237,7 @@ const DeleteButton = styled.button`
   right: 8%;
   top: 20%;
 `;
+
 const ModalButton = styled.button`
   background-color: transparent;
   border: none;

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="154.372" height="153.925" viewBox="0 0 154.372 153.925">
-  <g id="Icon_feather-check-circle" data-name="Icon feather-check-circle" transform="translate(-1.486 -1.408)">
-    <path id="Pfad_4" data-name="Pfad 4" d="M153.736,71.472v6.934A75.368,75.368,0,1,1,109.043,9.519" transform="translate(0 0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
-    <path id="Pfad_5" data-name="Pfad 5" d="M111.478,6,36.11,81.443,13.5,58.833" transform="translate(42.258 12.111)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="159.201" height="158.089" viewBox="0 0 159.201 158.089">
+  <g id="Komponente_1_1" data-name="Komponente 1 – 1" transform="translate(3.515 3.732)">
+    <path id="Pfad_4" data-name="Pfad 4" d="M153.736,71.472v6.934A75.37,75.37,0,1,1,109.043,9.519" transform="translate(-3 -2.978)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
   </g>
+  <path id="Pfad_5" data-name="Pfad 5" d="M111.478,6,36.11,81.443,13.5,58.833" transform="translate(42.772 12.865)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
 </svg>

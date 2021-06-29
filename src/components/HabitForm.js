@@ -31,7 +31,7 @@ export default function HabitForm({
 
   const [habit, setHabit] = useState(habitToEdit ?? initialHabit);
 
-  const placeholderText = `neues Ziel tippen...
+  const placeholderText = `neues Ziel...
 `;
 
   function handleUpdateHabit(event) {
@@ -58,7 +58,7 @@ export default function HabitForm({
   return (
     <Form onSubmit={handleFormSubmission}>
       <label htmlFor="goal">Ziel</label>
-      <Ziel
+      <Input
         type="text"
         name="goal"
         onChange={handleUpdateHabit}
@@ -66,7 +66,7 @@ export default function HabitForm({
         placeholder={placeholderText}
       />
       <label htmlFor="frequency">Häufigkeit</label>
-      <select
+      <Dropdown
         name="frequency"
         id="frequency"
         onChange={handleUpdateHabit}
@@ -75,9 +75,10 @@ export default function HabitForm({
         <option value=""> wähle die Häufigkeit </option>
         <option value="täglich">täglich</option>
         <option value="wöchentlich">wöchentlich</option>
-        <option value="zweiwöchentlich">zweiwöchentlich</option>
         <option value="monatlich">monatlich</option>
-      </select>
+        <option value="vierteljährlich">vierteljährlich</option>
+        <option value="jährlich">jährlich</option>
+      </Dropdown>
       <Button isPrimary>
         {habitToEdit ? 'speichern' : 'hinzufügen'}{' '}
         <img src={checkIcon} alt="check icon" height="16" />
@@ -96,19 +97,33 @@ export default function HabitForm({
 
 const Button = styled.button`
   background: ${(props) =>
-    props.isPrimary ? 'var(--primary)' : 'var(--primary-transparent)'};
+    props.isPrimary
+      ? 'var(--secondary-dark)'
+      : 'var(--secondary-dark-transparent);'};
   border: none;
   border-radius: 0.4rem;
+  color: var(--font);
   cursor: pointer;
   font-size: 1.2rem;
   font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
   padding: 1.5rem;
 `;
 
+const Dropdown = styled.select`
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.6rem;
+  backdrop-filter: blur(2px);
+  background: var(--font);
+  color: var(--secondary-dark);
+  outline: none;
+`;
+
 const Form = styled.form`
+  color: white;
   display: grid;
   gap: 0.5rem;
-  margin: 0 auto;
+  margin: 0.75rem 0.75rem;
   max-width: 25rem;
   label,
   legend {
@@ -137,9 +152,19 @@ const Form = styled.form`
     font-weight: normal;
   }
   padding: 0.3rem;
+
+  input,
+  textarea {
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.6rem;
+    backdrop-filter: blur(2px);
+    background: var(--font);
+    outline: none;
+  }
 `;
 
-const Ziel = styled.input`
+const Input = styled.input`
   height: 6rem;
 
   ::placeholder {
