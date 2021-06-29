@@ -59,6 +59,15 @@ export default function Grid({ habits }) {
     ],
   };
 
+  // Home.js
+  // neuer useState initialState ist goal und false mit key als Datum
+  // on checked/done ändert es sich
+  // diesen ins localStorage speichern useEffect
+  // jedes Mal wenn es gecheckt wird, updated sich localStorage
+
+  // Tracker.js
+  // auf tracker.js ausgeben
+
   const allDailyHabits = habits.filter(
     (habit) => habit.frequency === 'täglich'
   );
@@ -69,7 +78,7 @@ export default function Grid({ habits }) {
       {days.map((day) => {
         return <Days>{day}</Days>;
       })}
-      {allDailyHabits.map((dailyHabit, indexOfDailyHabit) => {
+      {/* {allDailyHabits.map((dailyHabit, indexOfDailyHabit) => {
         {
           return currentWeek.map((day, index) => {
             return (
@@ -90,8 +99,8 @@ export default function Grid({ habits }) {
             );
           });
         }
-      })}
-      {/* {habits.map((habit) => {
+      })} */}
+      {habits.map((habit) => {
         if (habit.frequency === 'täglich') {
           const color = habit.checked;
           return (
@@ -109,7 +118,7 @@ export default function Grid({ habits }) {
             </>
           );
         }
-      })} */}
+      })}
     </Section>
   );
 }
@@ -118,22 +127,25 @@ const Bubble = styled.div`
   border: 1.5px dashed;
   border-radius: 100vw;
   height: 1.25rem;
-  margin: auto;
+  margin: 0.25rem auto;
   width: 1.25rem;
 `;
 
 const Days = styled.p`
+  font-weight: 500;
   text-align: center;
+
   :nth-child(1) {
     grid-column-start: 2;
   }
 `;
 
 const HabitTitle = styled.p`
+  font-weight: 400;
   grid-column: 1;
   padding-right: 0.938rem;
   text-align: left;
-  margin-bottom: 0;
+  margin: 0 auto;
 `;
 
 const Section = styled.section`

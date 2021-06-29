@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
@@ -33,17 +33,44 @@ export default function Home({
 }) {
   const [editMode, setEditMode] = useState(false);
   const [showsEditModal, setShowsEditModal] = useState(false);
+  const [trackingData, setTrackingData] = useState(
+    loadFromLocalStorage('trackingData') ?? []
+  );
 
-  const date = format(new Date(), 'EEEE, dd.MM.yyyy', { locale: de });
+  const date = format(new Date(), 'EEEE, dd.MM.yyyy', {
+    locale: de,
+  });
 
   const checkbox = (value) => {
     return (
       <CheckboxWrapper>
-        <Checkbox type="checkbox" />
-        <span id={id}>{value}</span>
+        <Checkbox type="checkbox" onClick={() => placeIntoStorage(value)} />
+        <HabitName id={id}>{value}</HabitName>
       </CheckboxWrapper>
     );
   };
+
+  function saveToLocalStorage(trackingData, data) {
+    localStorage.setItem(trackingData, JSON.stringify(data));
+  }
+
+  function loadFromLocalStorage(key) {
+    try {
+      const localData = localStorage.getItem(key);
+      return JSON.parse(localData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    saveToLocalStorage('trackingData', trackingData);
+  }, [trackingData]);
+
+  function placeIntoStorage(activity) {
+    const today = format(new Date('2021-07-02'), 'yyyy-MM-dd');
+    setTrackingData([{ [today]: activity }, ...trackingData]);
+  }
 
   function handleDeleteClick(id) {
     const remainingHabits = habits.filter((habit) => habit.id !== id);
@@ -53,7 +80,6 @@ export default function Home({
   return (
     <>
       <Headline>{date}</Headline>
-
       {habits.length !== 0 &&
         (editMode === false ? (
           <EditButton onClick={() => setEditMode(true)}>
@@ -66,8 +92,7 @@ export default function Home({
             zurück
           </EditButton>
         ))}
-
-      <div>
+      <DailyHabitWrapper>
         {habits.map((habit) => {
           if (habit.frequency === 'täglich') {
             return (
@@ -96,7 +121,7 @@ export default function Home({
           }
           return null;
         })}
-      </div>
+      </DailyHabitWrapper>
 
       {showsEditModal && (
         <HabitWrapper>
@@ -129,6 +154,27 @@ const Headline = styled.h1`
     -2px 2px 0px var(--font-shadow-medium), -3px 3px 0px var(--font-shadow-dark);
   font-weight: 400;
   text-align: center;
+`;
+
+const HabitName = styled.span`
+  font-weight: 400;
+`;
+
+const HabitWrapper = styled.div`
+  align-items: center;
+  backdrop-filter: blur(20px);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+`;
+
+const DailyHabitWrapper = styled.div`
+  margin-top: 2rem;
 `;
 
 const Checkbox = styled.input`
@@ -173,7 +219,7 @@ const BackButton = styled.button`
   color: white;
   cursor: pointer;
   display: flex;
-  font-weight: 5;
+  font-weight: 600;
   justify-content: space-around;
   left: 10%;
   padding: 0.5rem;
@@ -194,25 +240,12 @@ const TrackerButton = styled.button`
   color: white;
   cursor: pointer;
   display: flex;
-  font-weight: 5;
+  font-weight: 600;
   justify-content: space-around;
   right: 10%;
   padding: 0.5rem;
   position: fixed;
   width: 9rem;
-`;
-
-const HabitWrapper = styled.div`
-  align-items: center;
-  backdrop-filter: blur(20px);
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 10;
 `;
 
 const EditButton = styled.button`

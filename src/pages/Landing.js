@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Logo from '../images/cherish.svg';
 import { format } from 'date-fns';
@@ -13,9 +14,15 @@ export default function Landing() {
     saveToLocalStorage('currentMood', currentMood);
   }, [currentMood]);
 
+  let history = useHistory();
+  const goToHomepage = () => {
+    history.push('/today');
+  };
+
   function placeIntoStorage(emoji) {
-    const today = format(new Date(), 'yyyy-MM-dd');
+    const today = format(new Date('2021-07-02'), 'yyyy-MM-dd');
     setCurrentMood([{ [today]: emoji }, ...currentMood]);
+    goToHomepage();
   }
 
   function saveToLocalStorage(currentMood, data) {

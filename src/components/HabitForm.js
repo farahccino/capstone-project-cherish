@@ -48,6 +48,7 @@ export default function HabitForm({
     } else {
       onAddHabit({ ...habit, id: uuidv4() });
     }
+    setHabit(initialHabit);
   }
 
   let history = useHistory();

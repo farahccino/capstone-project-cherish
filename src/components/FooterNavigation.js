@@ -46,6 +46,7 @@ const NavWrapper = styled.footer`
 const Subtitle = styled.p`
   color: var(--font);
   font-size: 1rem;
+  font-weight: 500;
   margin: 0 auto;
   text-align: center;
   text-decoration: none;

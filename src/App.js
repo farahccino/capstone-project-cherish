@@ -36,37 +36,35 @@ export default function App() {
     <>
       <div>
         <Headline />
-        <MainContainer>
-          <Switch>
-            <Route exact path="/">
-              <Landing />
-            </Route>
-            <Route path="/today">
-              <Home
-                habits={habits}
-                setHabits={setHabits}
-                onEditHabit={editHabit}
-                onSetHabitToEdit={setHabitToEdit}
-                habitToEdit={habitToEdit}
-              />
-            </Route>
-            <Route path="/tracker">
-              <Tracker habits={habits} />
-            </Route>
-            <Route path="/add-goal">
-              <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} />
-            </Route>
-            <Route path="/goals">
-              <Goals
-                habits={habits}
-                setHabits={setHabits}
-                onSaveHabit={editHabit}
-                onSetHabitToEdit={setHabitToEdit}
-                habitToEdit={habitToEdit}
-              />
-            </Route>
-          </Switch>
-        </MainContainer>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route path="/today">
+            <Home
+              habits={habits}
+              setHabits={setHabits}
+              onEditHabit={editHabit}
+              onSetHabitToEdit={setHabitToEdit}
+              habitToEdit={habitToEdit}
+            />
+          </Route>
+          <Route path="/tracker">
+            <Tracker habits={habits} />
+          </Route>
+          <Route path="/add-goal">
+            <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} />
+          </Route>
+          <Route path="/goals">
+            <Goals
+              habits={habits}
+              setHabits={setHabits}
+              onSaveHabit={editHabit}
+              onSetHabitToEdit={setHabitToEdit}
+              habitToEdit={habitToEdit}
+            />
+          </Route>
+        </Switch>
       </div>
     </>
   );
@@ -77,5 +75,3 @@ const Headline = styled.h1`
   font-family: 'Roboto';
   text-align: center;
 `;
-
-const MainContainer = styled.main``;

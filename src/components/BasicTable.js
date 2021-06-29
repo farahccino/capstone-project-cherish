@@ -34,6 +34,7 @@ const Table = styled.table`
   th {
     border: none;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    font-weight: 400;
     padding: 8px;
   }
 
@@ -50,6 +51,7 @@ const Table = styled.table`
   th {
     background-color: hsla(170, 80%, 30%, 0.85);
     color: ivory;
+    font-weight: 600;
     padding-bottom: 12px;
     padding-top: 12px;
     text-align: center;
