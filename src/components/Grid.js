@@ -14,59 +14,50 @@ export default function Grid({ habits }) {
     '2021-07-04',
   ];
 
-  const dailyHabits = {
-    '2021-06-28': [
-      { goal: 'Essen', done: true },
-      { goal: 'Lachen', done: true },
-      { goal: 'Coden', done: false },
-      { goal: 'Coden', done: false },
-    ],
-    '2021-06-29': [
-      { goal: 'Essen', done: true },
-      { goal: 'Lachen', done: false },
-      { goal: 'Coden', done: true },
-      { goal: 'Coden', done: true },
-    ],
-    '2021-06-30': [
-      { goal: 'Essen', done: true },
-      { goal: 'Lachen', done: false },
-      { goal: 'Coden', done: false },
-      { goal: 'Coden', done: false },
-    ],
-    '2021-07-01': [
-      { goal: 'Essen', done: true },
-      { goal: 'Lachen', done: true },
-      { goal: 'Coden', done: false },
-      { goal: 'Coden', done: false },
-    ],
-    '2021-07-02': [
-      { goal: 'Essen', done: true },
-      { goal: 'Lachen', done: true },
-      { goal: 'Coden', done: false },
-      { goal: 'Coden', done: false },
-    ],
-    '2021-07-03': [
-      { goal: 'Essen', done: true },
-      { goal: 'Lachen', done: true },
-      { goal: 'Coden', done: false },
-      { goal: 'Coden', done: false },
-    ],
-    '2021-07-04': [
-      { goal: 'Essen', done: true },
-      { goal: 'Lachen', done: true },
-      { goal: 'Coden', done: false },
-      { goal: 'Coden', done: false },
-    ],
-  };
-
-  // Home.js
-  // neuer useState initialState ist goal und false mit key als Datum
-  // on checked/done ändert es sich
-  // diesen ins localStorage speichern useEffect
-  // jedes Mal wenn es gecheckt wird, updated sich localStorage
-
-  // Tracker.js
-  // auf tracker.js ausgeben
+  // const dailyHabits = {
+  //   '2021-06-28': [
+  //     { goal: 'Essen', done: true },
+  //     { goal: 'Lachen', done: true },
+  //     { goal: 'Coden', done: false },
+  //     { goal: 'Coden', done: false },
+  //   ],
+  //   '2021-06-29': [
+  //     { goal: 'Essen', done: true },
+  //     { goal: 'Lachen', done: false },
+  //     { goal: 'Coden', done: true },
+  //     { goal: 'Coden', done: true },
+  //   ],
+  //   '2021-06-30': [
+  //     { goal: 'Essen', done: true },
+  //     { goal: 'Lachen', done: false },
+  //     { goal: 'Coden', done: false },
+  //     { goal: 'Coden', done: false },
+  //   ],
+  //   '2021-07-01': [
+  //     { goal: 'Essen', done: true },
+  //     { goal: 'Lachen', done: true },
+  //     { goal: 'Coden', done: false },
+  //     { goal: 'Coden', done: false },
+  //   ],
+  //   '2021-07-02': [
+  //     { goal: 'Essen', done: true },
+  //     { goal: 'Lachen', done: true },
+  //     { goal: 'Coden', done: false },
+  //     { goal: 'Coden', done: false },
+  //   ],
+  //   '2021-07-03': [
+  //     { goal: 'Essen', done: true },
+  //     { goal: 'Lachen', done: true },
+  //     { goal: 'Coden', done: false },
+  //     { goal: 'Coden', done: false },
+  //   ],
+  //   '2021-07-04': [
+  //     { goal: 'Essen', done: true },
+  //     { goal: 'Lachen', done: true },
+  //     { goal: 'Coden', done: false },
+  //     { goal: 'Coden', done: false },
+  //   ],
+  // };
 
   const allDailyHabits = habits.filter(
     (habit) => habit.frequency === 'täglich'
@@ -85,7 +76,7 @@ export default function Grid({ habits }) {
               <>
                 {index === 0 ? (
                   <HabitTitle>
-                    {dailyHabits[day][indexOfDailyHabit].goal}
+                    {dailyHabits[day][indexOfDailyHabit].activity.goal}
                   </HabitTitle>
                 ) : null}
                 <Bubble
@@ -100,7 +91,7 @@ export default function Grid({ habits }) {
           });
         }
       })} */}
-      {habits.map((habit) => {
+      {/* {habits.map((habit) => {
         if (habit.frequency === 'täglich') {
           const color = habit.checked;
           return (
@@ -118,7 +109,7 @@ export default function Grid({ habits }) {
             </>
           );
         }
-      })}
+      })} */}
     </Section>
   );
 }

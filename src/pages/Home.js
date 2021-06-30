@@ -34,18 +34,50 @@ export default function Home({
   const [editMode, setEditMode] = useState(false);
   const [showsEditModal, setShowsEditModal] = useState(false);
   const [trackingData, setTrackingData] = useState(
-    loadFromLocalStorage('trackingData') ?? []
+    loadFromLocalStorage('trackingData') ?? {}
   );
+  const today = format(new Date('2021-07-02'), 'yyyy-MM-dd');
 
-  const date = format(new Date(), 'EEEE, dd.MM.yyyy', {
+  const date = format(new Date('2021-07-02'), 'EEEE, dd.MM.yyyy', {
     locale: de,
   });
 
-  const checkbox = (value) => {
+  useEffect(() => {
+    function initialiseTrackingDataForToday(dailyHabits) {
+      if (!(today in trackingData)) {
+        const activitiesForToday = dailyHabits.map((habit) => ({
+          activity: habit,
+          done: false,
+        }));
+        setTrackingData({ [today]: activitiesForToday, ...trackingData });
+      }
+    }
+    const dailyHabits = habits.filter((habit) => habit.frequency === 'täglich');
+    initialiseTrackingDataForToday(dailyHabits);
+  }, []);
+
+  function checkIfTrackedAlready(habit) {
+    // if (!trackingData) return false;
+
+    if (!today in trackingData) {
+      return trackingData[today].some((trackingActivity) => {
+        if (trackingActivity.activity.id === habit.id) {
+          return trackingActivity.done;
+        }
+        return false;
+      });
+    }
+  }
+
+  const checkbox = (habit) => {
     return (
       <CheckboxWrapper>
-        <Checkbox type="checkbox" onClick={() => placeIntoStorage(value)} />
-        <HabitName id={id}>{value}</HabitName>
+        <Checkbox
+          type="checkbox"
+          checked={checkIfTrackedAlready(habit)}
+          onClick={(event) => placeIntoStorage(habit, event)}
+        />
+        <HabitName id={habit.id}>{habit.goal}</HabitName>
       </CheckboxWrapper>
     );
   };
@@ -67,9 +99,18 @@ export default function Home({
     saveToLocalStorage('trackingData', trackingData);
   }, [trackingData]);
 
-  function placeIntoStorage(activity) {
-    const today = format(new Date('2021-07-02'), 'yyyy-MM-dd');
-    setTrackingData([{ [today]: activity }, ...trackingData]);
+  function placeIntoStorage(activity, event) {
+    const checked = event.target.checked;
+    const activities = trackingData[today].map((trackingActivity) => {
+      if (trackingActivity.activity.id === activity.id) {
+        trackingActivity.done = checked;
+      }
+      return trackingActivity;
+    });
+    setTrackingData({
+      [today]: activities,
+      ...trackingData,
+    });
   }
 
   function handleDeleteClick(id) {
@@ -82,22 +123,24 @@ export default function Home({
       <Headline>{date}</Headline>
       {habits.length !== 0 &&
         (editMode === false ? (
-          <EditButton onClick={() => setEditMode(true)}>
-            edit mode
-            <img src={editIcon} alt="edit icon" height="20px" />
-          </EditButton>
+          <Circle>
+            <EditButton onClick={() => setEditMode(true)}>
+              <img src={editIcon} alt="edit icon" height="20px" />
+            </EditButton>
+          </Circle>
         ) : (
-          <EditButton align="right" onClick={() => setEditMode(false)}>
-            <img src={returnIcon} alt="return icon" height="20px" />
-            zurück
-          </EditButton>
+          <Circle>
+            <EditButton align="right" onClick={() => setEditMode(false)}>
+              <img src={returnIcon} alt="return icon" height="20px" />
+            </EditButton>
+          </Circle>
         ))}
       <DailyHabitWrapper>
         {habits.map((habit) => {
           if (habit.frequency === 'täglich') {
             return (
               <>
-                {checkbox(habit.goal)}
+                {checkbox(habit)}
 
                 {editMode && (
                   <>
@@ -148,6 +191,10 @@ export default function Home({
   );
 }
 
+const Circle = styled.div`
+  background-color: hotpink;
+`;
+
 const Headline = styled.h1`
   color: var(--font);
   text-shadow: -1px 1px 0px var(--font-shadow),
@@ -174,7 +221,7 @@ const HabitWrapper = styled.div`
 `;
 
 const DailyHabitWrapper = styled.div`
-  margin-top: 2rem;
+  margin-top: 2.8rem;
 `;
 
 const Checkbox = styled.input`
@@ -256,9 +303,9 @@ const EditButton = styled.button`
   color: var(--font);
   cursor: pointer;
   display: flex;
-  right: 9%;
+  right: 3%;
   position: absolute;
-  top: 14%;
+  top: 13%;
   z-index: 100;
 `;
 

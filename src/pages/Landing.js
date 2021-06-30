@@ -20,7 +20,7 @@ export default function Landing() {
   };
 
   function placeIntoStorage(emoji) {
-    const today = format(new Date('2021-07-02'), 'yyyy-MM-dd');
+    const today = format(new Date(), 'yyyy-MM-dd');
     setCurrentMood([{ [today]: emoji }, ...currentMood]);
     goToHomepage();
   }
