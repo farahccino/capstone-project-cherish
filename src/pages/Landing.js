@@ -20,9 +20,9 @@ export default function Landing() {
   };
 
   function placeIntoStorage(emoji) {
-    const today = format(new Date(), 'yyyy-MM-dd');
+    const today = format(new Date('2021-07-04'), 'yyyy-MM-dd');
     setCurrentMood([{ [today]: emoji }, ...currentMood]);
-    goToHomepage();
+    //goToHomepage();
   }
 
   function saveToLocalStorage(currentMood, data) {

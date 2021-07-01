@@ -26,7 +26,6 @@ Home.propTypes = {
 export default function Home({
   habits,
   setHabits,
-  id,
   habitToEdit,
   onSetHabitToEdit,
   onEditHabit,
@@ -36,9 +35,9 @@ export default function Home({
   const [trackingData, setTrackingData] = useState(
     loadFromLocalStorage('trackingData') ?? {}
   );
-  const today = format(new Date('2021-07-02'), 'yyyy-MM-dd');
+  const today = format(new Date('2021-07-03'), 'yyyy-MM-dd');
 
-  const date = format(new Date('2021-07-02'), 'EEEE, dd.MM.yyyy', {
+  const date = format(new Date('2021-07-03'), 'EEEE, dd.MM.yyyy', {
     locale: de,
   });
 
@@ -59,7 +58,7 @@ export default function Home({
   function checkIfTrackedAlready(habit) {
     // if (!trackingData) return false;
 
-    if (!today in trackingData) {
+    if (today in trackingData) {
       return trackingData[today].some((trackingActivity) => {
         if (trackingActivity.activity.id === habit.id) {
           return trackingActivity.done;
@@ -123,17 +122,13 @@ export default function Home({
       <Headline>{date}</Headline>
       {habits.length !== 0 &&
         (editMode === false ? (
-          <Circle>
-            <EditButton onClick={() => setEditMode(true)}>
-              <img src={editIcon} alt="edit icon" height="20px" />
-            </EditButton>
-          </Circle>
+          <EditButton onClick={() => setEditMode(true)}>
+            <img src={editIcon} alt="edit icon" height="20px" />
+          </EditButton>
         ) : (
-          <Circle>
-            <EditButton align="right" onClick={() => setEditMode(false)}>
-              <img src={returnIcon} alt="return icon" height="20px" />
-            </EditButton>
-          </Circle>
+          <EditButton align="right" onClick={() => setEditMode(false)}>
+            <img src={returnIcon} alt="return icon" height="20px" />
+          </EditButton>
         ))}
       <DailyHabitWrapper>
         {habits.map((habit) => {
@@ -191,15 +186,13 @@ export default function Home({
   );
 }
 
-const Circle = styled.div`
-  background-color: hotpink;
-`;
-
 const Headline = styled.h1`
   color: var(--font);
   text-shadow: -1px 1px 0px var(--font-shadow),
     -2px 2px 0px var(--font-shadow-medium), -3px 3px 0px var(--font-shadow-dark);
   font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 0;
   text-align: center;
 `;
 
@@ -221,7 +214,7 @@ const HabitWrapper = styled.div`
 `;
 
 const DailyHabitWrapper = styled.div`
-  margin-top: 2.8rem;
+  margin-top: 3.5rem;
 `;
 
 const Checkbox = styled.input`
@@ -235,7 +228,8 @@ const Checkbox = styled.input`
   width: 1rem;
 
   :checked {
-    background: teal;
+    background-image: linear-gradient(#335b71 45%, #03324c 55%);
+    box-shadow: 0 2px 2px var(--secondary-dark);
   }
 `;
 
@@ -297,33 +291,41 @@ const TrackerButton = styled.button`
 
 const EditButton = styled.button`
   align-items: center;
-  background-color: transparent;
-  border: none;
+  backdrop-filter: blur(1px);
+  background-image: linear-gradient(#335b71 45%, #03324c 55%);
+  border: 1px solid ivory;
   border-radius: 100vw;
+  box-shadow: 0 2px 2px var(--secondary-dark);
   color: var(--font);
   cursor: pointer;
   display: flex;
-  right: 3%;
+  right: 4%;
+  padding: 0.4rem;
   position: absolute;
-  top: 13%;
+  top: 12%;
   z-index: 100;
 `;
 
 const DeleteButton = styled.button`
-  background-color: transparent;
-  border: none;
+  background-image: linear-gradient(#335b71 45%, #03324c 55%);
+  border: 1px solid ivory;
   border-radius: 100vw;
+  box-shadow: 0 2px 2px var(--secondary-dark);
   cursor: pointer;
+  padding: 0.3rem;
   right: 8%;
   top: 20%;
 `;
 
 const ModalButton = styled.button`
-  background-color: transparent;
-  border: none;
+  background-image: linear-gradient(#335b71 45%, #03324c 55%);
+  border: 1px solid ivory;
   border-radius: 100vw;
+  box-shadow: 0 2px 2px var(--secondary-dark);
   cursor: pointer;
-  right: 13%;
+  margin: 0 0.25rem;
+  padding: 0.3rem;
+  left: 13%;
   top: 20%;
 `;
 

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
 
+import { format } from 'date-fns';
+
 export default function Grid({ habits }) {
-  const days = ['M', 'D', 'M', 'D', 'F', 'S', 'S'];
+  const daysOfTheWeek = ['M', 'D', 'M', 'D', 'F', 'S', 'S'];
 
   const currentWeek = [
     '2021-06-28',
@@ -14,102 +16,80 @@ export default function Grid({ habits }) {
     '2021-07-04',
   ];
 
-  // const dailyHabits = {
-  //   '2021-06-28': [
-  //     { goal: 'Essen', done: true },
-  //     { goal: 'Lachen', done: true },
-  //     { goal: 'Coden', done: false },
-  //     { goal: 'Coden', done: false },
-  //   ],
-  //   '2021-06-29': [
-  //     { goal: 'Essen', done: true },
-  //     { goal: 'Lachen', done: false },
-  //     { goal: 'Coden', done: true },
-  //     { goal: 'Coden', done: true },
-  //   ],
-  //   '2021-06-30': [
-  //     { goal: 'Essen', done: true },
-  //     { goal: 'Lachen', done: false },
-  //     { goal: 'Coden', done: false },
-  //     { goal: 'Coden', done: false },
-  //   ],
-  //   '2021-07-01': [
-  //     { goal: 'Essen', done: true },
-  //     { goal: 'Lachen', done: true },
-  //     { goal: 'Coden', done: false },
-  //     { goal: 'Coden', done: false },
-  //   ],
-  //   '2021-07-02': [
-  //     { goal: 'Essen', done: true },
-  //     { goal: 'Lachen', done: true },
-  //     { goal: 'Coden', done: false },
-  //     { goal: 'Coden', done: false },
-  //   ],
-  //   '2021-07-03': [
-  //     { goal: 'Essen', done: true },
-  //     { goal: 'Lachen', done: true },
-  //     { goal: 'Coden', done: false },
-  //     { goal: 'Coden', done: false },
-  //   ],
-  //   '2021-07-04': [
-  //     { goal: 'Essen', done: true },
-  //     { goal: 'Lachen', done: true },
-  //     { goal: 'Coden', done: false },
-  //     { goal: 'Coden', done: false },
-  //   ],
-  // };
+  const [trackingData, setTrackingData] = useState(
+    loadFromLocalStorage('trackingData') ?? {}
+  );
+
+  const [currentMood, setCurrentMood] = useState(
+    loadFromLocalStorage('currentMood') ?? []
+  );
+
+  const [bubble, setBubble] = useState(habits.map((habit) => habit.checked));
+
+  function loadFromLocalStorage(key) {
+    try {
+      const localData = localStorage.getItem(key);
+      return JSON.parse(localData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function loadFromLocalStorage(trackingData) {
+    try {
+      const localData = localStorage.getItem(trackingData);
+      return JSON.parse(localData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const allDailyHabits = habits.filter(
     (habit) => habit.frequency === 'täglich'
   );
 
-  const [bubble, setBubble] = useState(habits.map((habit) => habit.checked));
+  const days = Object.keys(trackingData).sort();
+
+  const currentMoodData = [
+    { '2021-06-28': '🙂' },
+    { '2021-06-29': '😄' },
+    { '2021-06-30': '🙂' },
+    { '2021-07-01': '😐' },
+    { '2021-07-02': '😞' },
+    { '2021-07-03': '😄' },
+    { '2021-07-04': '😄' },
+  ];
+
   return (
     <Section>
-      {days.map((day) => {
+      {daysOfTheWeek.map((day) => {
         return <Days>{day}</Days>;
       })}
-      {/* {allDailyHabits.map((dailyHabit, indexOfDailyHabit) => {
-        {
-          return currentWeek.map((day, index) => {
-            return (
-              <>
-                {index === 0 ? (
-                  <HabitTitle>
-                    {dailyHabits[day][indexOfDailyHabit].activity.goal}
-                  </HabitTitle>
-                ) : null}
-                <Bubble
-                  style={{
-                    backgroundColor: dailyHabits[day][indexOfDailyHabit].done
-                      ? 'var(--primary)'
-                      : '',
-                  }}
-                ></Bubble>
-              </>
-            );
-          });
-        }
-      })} */}
-      {/* {habits.map((habit) => {
-        if (habit.frequency === 'täglich') {
-          const color = habit.checked;
-          return (
-            <>
-              <HabitTitle>{habit.goal}</HabitTitle>
-              {bubble.map((bubble) => {
-                return (
-                  <Bubble
-                    style={{
-                      backgroundColor: bubble ? 'var(--primary)' : '',
-                    }}
-                  ></Bubble>
-                );
-              })}
-            </>
+      <HabitTitle>mood</HabitTitle>
+      {currentMoodData.map((mood) => (
+        <Emojis>{Object.values(mood)[0]}</Emojis>
+      ))}
+      {allDailyHabits.map((habit, habitIndex) => {
+        return days.map((day, index) => {
+          const activityPerDay = trackingData[day].find(
+            (activityPerDay) => activityPerDay.activity.id === habit.id
           );
-        }
-      })} */}
+          console.log(activityPerDay);
+          return activityPerDay ? (
+            <>
+              {index === 0 && (
+                <HabitTitle>{activityPerDay.activity.goal}</HabitTitle>
+              )}
+
+              <Bubble
+                style={{
+                  backgroundColor: activityPerDay.done ? 'var(--primary)' : '',
+                }}
+              ></Bubble>
+            </>
+          ) : null;
+        });
+      })}
     </Section>
   );
 }
@@ -137,6 +117,10 @@ const HabitTitle = styled.p`
   padding-right: 0.938rem;
   text-align: left;
   margin: 0 auto;
+`;
+
+const Emojis = styled.span`
+  font-size: 1.5rem;
 `;
 
 const Section = styled.section`

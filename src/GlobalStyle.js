@@ -22,8 +22,8 @@ export const GlobalStyle = createGlobalStyle`
         --font-shadow-medium: hsl(270, 33%, 58%);
         --font-shadow-dark: hsl(270, 50%, 40%);
 
-        --glow: hsl(60, 30%, 100%, 0.2);
-        --glow-fade: hsl(15, 82%, 59%, 0.2);
+        --glow: hsla(60, 30%, 100%, 0.2);
+        --glow-fade: hsla(15, 82%, 59%, 0.2);
 }
 
 *,

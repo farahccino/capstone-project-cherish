@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
 
-import today from '../images/today.svg';
-import plus from '../images/plus.svg';
-import goals from '../images/goals.svg';
+import { ReactComponent as PlusButton } from '../images/plus.svg';
+import { ReactComponent as GoalButton } from '../images/goals.svg';
+import { ReactComponent as HomeButton } from '../images/today.svg';
 
 export default function FooterNavigation({ isStatic }) {
   return (
@@ -13,20 +13,53 @@ export default function FooterNavigation({ isStatic }) {
         activeClassName="active"
         style={{ textDecoration: 'none' }}
       >
-        <img src={today} alt="Today page" width="54" height="54" />
+        <HomeButtonStyled title="Home" role="img" />
         <Subtitle>Heute</Subtitle>
       </NavLink>
       <NavLink to="/add-goal" style={{ textDecoration: 'none' }}>
-        <img src={plus} alt="Adds a new entry" width="54" height="54" />
+        <PlusButtonStyled title="Plus" role="img" />
         <Subtitle>Neu</Subtitle>
       </NavLink>
       <NavLink to="/goals" style={{ textDecoration: 'none' }}>
-        <img src={goals} alt="Goals page" width="54" height="54" />
+        <GoalButtonStyled title="Goal" role="img" />
         <Subtitle>Ziele</Subtitle>
       </NavLink>
     </NavWrapper>
   );
 }
+
+const HomeButtonStyled = styled(HomeButton)`
+  height: 54px;
+  width: 54px;
+
+  .active & path {
+    fill: var(--secondary);
+    stroke: var(--secondary);
+    stroke-width: 1;
+  }
+`;
+
+const PlusButtonStyled = styled(PlusButton)`
+  height: 54px;
+  width: 54px;
+
+  .active & path {
+    fill: var(--glow);
+    stroke: var(--secondary);
+    stroke-width: 5;
+  }
+`;
+
+const GoalButtonStyled = styled(GoalButton)`
+  height: 54px;
+  width: 54px;
+
+  .active & path {
+    fill: var(--secondary);
+    stroke: var(--secondary);
+    stroke-width: 1;
+  }
+`;
 
 const NavWrapper = styled.footer`
   background: rgba(255, 255, 255, 0.15);
