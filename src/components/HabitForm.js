@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 

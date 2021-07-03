@@ -7,8 +7,7 @@ import Logo from '../images/cherish.svg';
 
 export default function Landing() {
   const [currentMood, setCurrentMood] = useState(
-    loadFromLocalStorage('currentMood') ?? []
-  );
+
 
   useEffect(() => {
     saveToLocalStorage('currentMood', currentMood);
