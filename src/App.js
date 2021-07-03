@@ -5,11 +5,11 @@ import { useState, useEffect } from 'react';
 
 import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
-import Home from './pages/Home';
-import Tracker from './pages/Tracker';
-import Plus from './pages/Plus';
 import Goals from './pages/Goals';
+import Home from './pages/Home';
 import Landing from './pages/Landing';
+import Plus from './pages/Plus';
+import Tracker from './pages/Tracker';
 
 export default function App() {
   const [habitToEdit, setHabitToEdit] = useState(null);

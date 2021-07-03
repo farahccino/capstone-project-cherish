@@ -1,30 +1,16 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
 
-import { format } from 'date-fns';
-
 export default function Grid({ habits }) {
   const daysOfTheWeek = ['M', 'D', 'M', 'D', 'F', 'S', 'S'];
-
-  const currentWeek = [
-    '2021-06-28',
-    '2021-06-29',
-    '2021-06-30',
-    '2021-07-01',
-    '2021-07-02',
-    '2021-07-03',
-    '2021-07-04',
-  ];
 
   const [trackingData, setTrackingData] = useState(
     loadFromLocalStorage('trackingData') ?? {}
   );
 
-  const [currentMood, setCurrentMood] = useState(
+  const [currentMoodData, setCurrentMoodData] = useState(
     loadFromLocalStorage('currentMood') ?? []
   );
-
-  const [bubble, setBubble] = useState(habits.map((habit) => habit.checked));
 
   function loadFromLocalStorage(key) {
     try {
@@ -50,16 +36,6 @@ export default function Grid({ habits }) {
 
   const days = Object.keys(trackingData).sort();
 
-  const currentMoodData = [
-    { '2021-06-28': '🙂' },
-    { '2021-06-29': '😄' },
-    { '2021-06-30': '🙂' },
-    { '2021-07-01': '😐' },
-    { '2021-07-02': '😞' },
-    { '2021-07-03': '😄' },
-    { '2021-07-04': '😄' },
-  ];
-
   return (
     <Section>
       {daysOfTheWeek.map((day) => {
@@ -74,7 +50,6 @@ export default function Grid({ habits }) {
           const activityPerDay = trackingData[day].find(
             (activityPerDay) => activityPerDay.activity.id === habit.id
           );
-          console.log(activityPerDay);
           return activityPerDay ? (
             <>
               {index === 0 && (
@@ -111,22 +86,22 @@ const Days = styled.p`
   }
 `;
 
-const HabitTitle = styled.p`
-  font-weight: 400;
-  grid-column: 1;
-  padding-right: 0.938rem;
-  text-align: left;
-  margin: 0 auto;
-`;
-
 const Emojis = styled.span`
   font-size: 1.5rem;
 `;
 
+const HabitTitle = styled.p`
+  font-weight: 400;
+  grid-column: 1;
+  margin: 0 auto;
+  padding-right: 0.938rem;
+  text-align: left;
+`;
+
 const Section = styled.section`
   align-items: center;
-  background-color: var(--primary-transparent);
   backdrop-filter: blur(7px);
+  background-color: var(--primary-transparent);
   border: 1px solid ivory;
   border-radius: 1rem;
   color: ivory;

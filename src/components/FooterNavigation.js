@@ -28,15 +28,41 @@ export default function FooterNavigation({ isStatic }) {
   );
 }
 
+const GoalButtonStyled = styled(GoalButton)`
+  height: 54px;
+  width: 54px;
+
+  .active & path {
+    fill: var(--glow);
+    stroke: var(--secondary);
+    stroke-width: 1;
+  }
+`;
+
 const HomeButtonStyled = styled(HomeButton)`
   height: 54px;
   width: 54px;
 
   .active & path {
-    fill: var(--secondary);
+    fill: var(--glow);
     stroke: var(--secondary);
     stroke-width: 1;
   }
+`;
+
+const NavWrapper = styled.footer`
+  backdrop-filter: blur(1px);
+  background: rgba(255, 255, 255, 0.15);
+  border-top: 1px solid lemonchiffon;
+  bottom: 0;
+  box-shadow: 0 0 6px 3px var(--glow), 0 0 10px 6px var(--glow),
+    0 0 140px 90px var(--glow-fade);
+  display: flex;
+  justify-content: space-around;
+  opacity: 0.5rem;
+  padding: 0.3rem;
+  position: ${(props) => (props.isStatic ? 'static' : 'fixed')};
+  width: 100%;
 `;
 
 const PlusButtonStyled = styled(PlusButton)`
@@ -48,32 +74,6 @@ const PlusButtonStyled = styled(PlusButton)`
     stroke: var(--secondary);
     stroke-width: 5;
   }
-`;
-
-const GoalButtonStyled = styled(GoalButton)`
-  height: 54px;
-  width: 54px;
-
-  .active & path {
-    fill: var(--secondary);
-    stroke: var(--secondary);
-    stroke-width: 1;
-  }
-`;
-
-const NavWrapper = styled.footer`
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(1px);
-  border-top: 1px solid lemonchiffon;
-  box-shadow: 0 0 6px 3px var(--glow), 0 0 10px 6px var(--glow),
-    0 0 140px 90px var(--glow-fade);
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  opacity: 0.5rem;
-  padding: 0.3rem;
-  position: ${(props) => (props.isStatic ? 'static' : 'fixed')};
-  width: 100%;
 `;
 
 const Subtitle = styled.p`

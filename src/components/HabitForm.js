@@ -11,9 +11,9 @@ import deleteIcon from '../images/delete.svg';
 import returnIcon from '../images/return.svg';
 
 HabitForm.propTypes = {
+  häufigkeit: PropTypes.arrayOf(PropTypes.object),
   headlineText: PropTypes.string,
   onAddHabit: PropTypes.func,
-  häufigkeit: PropTypes.arrayOf(PropTypes.object),
   setHabitToEdit: PropTypes.func,
 };
 

@@ -35,9 +35,9 @@ export default function Home({
   const [trackingData, setTrackingData] = useState(
     loadFromLocalStorage('trackingData') ?? {}
   );
-  const today = format(new Date('2021-07-03'), 'yyyy-MM-dd');
+  const today = format(new Date(), 'yyyy-MM-dd');
 
-  const date = format(new Date('2021-07-03'), 'EEEE, dd.MM.yyyy', {
+  const date = format(new Date(), 'EEEE, dd.MM.yyyy', {
     locale: de,
   });
 
@@ -56,8 +56,6 @@ export default function Home({
   }, []);
 
   function checkIfTrackedAlready(habit) {
-    // if (!trackingData) return false;
-
     if (today in trackingData) {
       return trackingData[today].some((trackingActivity) => {
         if (trackingActivity.activity.id === habit.id) {
@@ -186,35 +184,29 @@ export default function Home({
   );
 }
 
-const Headline = styled.h1`
-  color: var(--font);
-  text-shadow: -1px 1px 0px var(--font-shadow),
-    -2px 2px 0px var(--font-shadow-medium), -3px 3px 0px var(--font-shadow-dark);
-  font-weight: 400;
-  font-size: 2rem;
-  margin-bottom: 0;
-  text-align: center;
-`;
-
-const HabitName = styled.span`
-  font-weight: 400;
-`;
-
-const HabitWrapper = styled.div`
+const BackButton = styled.button`
   align-items: center;
-  backdrop-filter: blur(20px);
-  bottom: 0;
+  backdrop-filter: blur(1px);
+  background-color: hsla(330, 100%, 71%, 0.7);
+  border: 1px solid ivory;
+  border-radius: 1rem;
+  bottom: 19%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  color: white;
+  cursor: pointer;
   display: flex;
-  justify-content: center;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 10;
+  font-weight: 600;
+  justify-content: space-around;
+  left: 10%;
+  padding: 0.5rem;
+  position: fixed;
+  width: 9rem;
 `;
 
-const DailyHabitWrapper = styled.div`
-  margin-top: 3.5rem;
+const ButtonWrapper = styled.div`
+  display: inline-block;
 `;
 
 const Checkbox = styled.input`
@@ -247,25 +239,75 @@ const CheckboxWrapper = styled.div`
   top: 40%;
 `;
 
-const BackButton = styled.button`
+const DailyHabitWrapper = styled.div`
+  margin-top: 3.5rem;
+`;
+
+const DeleteButton = styled.button`
+  background-image: linear-gradient(#335b71 45%, #03324c 55%);
+  border: 1px solid ivory;
+  border-radius: 100vw;
+  box-shadow: 0 2px 2px var(--secondary-dark);
+  cursor: pointer;
+  padding: 0.3rem;
+  right: 8%;
+  top: 20%;
+`;
+
+const EditButton = styled.button`
   align-items: center;
   backdrop-filter: blur(1px);
-  background-color: hsla(330, 100%, 71%, 0.7);
+  background-image: linear-gradient(#335b71 45%, #03324c 55%);
   border: 1px solid ivory;
-  border-radius: 1rem;
-  bottom: 19%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  color: white;
+  border-radius: 100vw;
+  box-shadow: 0 2px 2px var(--secondary-dark);
+  color: var(--font);
   cursor: pointer;
   display: flex;
-  font-weight: 600;
-  justify-content: space-around;
-  left: 10%;
-  padding: 0.5rem;
-  position: fixed;
-  width: 9rem;
+  right: 4%;
+  padding: 0.4rem;
+  position: absolute;
+  top: 12%;
+  z-index: 100;
+`;
+
+const HabitName = styled.span`
+  font-weight: 400;
+`;
+
+const HabitWrapper = styled.div`
+  align-items: center;
+  backdrop-filter: blur(20px);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+`;
+
+const Headline = styled.h1`
+  color: var(--font);
+  text-shadow: -1px 1px 0px var(--font-shadow),
+    -2px 2px 0px var(--font-shadow-medium), -3px 3px 0px var(--font-shadow-dark);
+  font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 0;
+  text-align: center;
+`;
+
+const ModalButton = styled.button`
+  background-image: linear-gradient(#335b71 45%, #03324c 55%);
+  border: 1px solid ivory;
+  border-radius: 100vw;
+  box-shadow: 0 2px 2px var(--secondary-dark);
+  cursor: pointer;
+  margin: 0 0.25rem;
+  padding: 0.3rem;
+  left: 13%;
+  top: 20%;
 `;
 
 const TrackerButton = styled.button`
@@ -287,48 +329,4 @@ const TrackerButton = styled.button`
   padding: 0.5rem;
   position: fixed;
   width: 9rem;
-`;
-
-const EditButton = styled.button`
-  align-items: center;
-  backdrop-filter: blur(1px);
-  background-image: linear-gradient(#335b71 45%, #03324c 55%);
-  border: 1px solid ivory;
-  border-radius: 100vw;
-  box-shadow: 0 2px 2px var(--secondary-dark);
-  color: var(--font);
-  cursor: pointer;
-  display: flex;
-  right: 4%;
-  padding: 0.4rem;
-  position: absolute;
-  top: 12%;
-  z-index: 100;
-`;
-
-const DeleteButton = styled.button`
-  background-image: linear-gradient(#335b71 45%, #03324c 55%);
-  border: 1px solid ivory;
-  border-radius: 100vw;
-  box-shadow: 0 2px 2px var(--secondary-dark);
-  cursor: pointer;
-  padding: 0.3rem;
-  right: 8%;
-  top: 20%;
-`;
-
-const ModalButton = styled.button`
-  background-image: linear-gradient(#335b71 45%, #03324c 55%);
-  border: 1px solid ivory;
-  border-radius: 100vw;
-  box-shadow: 0 2px 2px var(--secondary-dark);
-  cursor: pointer;
-  margin: 0 0.25rem;
-  padding: 0.3rem;
-  left: 13%;
-  top: 20%;
-`;
-
-const ButtonWrapper = styled.div`
-  display: inline-block;
 `;

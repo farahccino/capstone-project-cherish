@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
+
 import FooterNavigation from '../components/FooterNavigation';
 import BasicTable from '../components/BasicTable';
 import HabitForm from '../components/HabitForm';
