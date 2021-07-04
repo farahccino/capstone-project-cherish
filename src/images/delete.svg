@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="106.163" height="117.626" viewBox="0 0 106.163 117.626">
   <g id="Icon_feather-trash-2" data-name="Icon feather-trash-2" transform="translate(-3 -1.5)">
-    <path id="Pfad_5" data-name="Pfad 5" d="M4.5,9H107.663" transform="translate(0 16.925)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-    <path id="Pfad_6" data-name="Pfad 6" d="M87.738,25.925v80.238a11.463,11.463,0,0,1-11.463,11.463H18.963A11.463,11.463,0,0,1,7.5,106.163V25.925m17.194,0V14.463A11.463,11.463,0,0,1,36.156,3H59.082A11.463,11.463,0,0,1,70.544,14.463V25.925" transform="translate(8.463 0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-    <path id="Pfad_7" data-name="Pfad 7" d="M15,16.5V50.888" transform="translate(29.619 38.082)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-    <path id="Pfad_8" data-name="Pfad 8" d="M21,16.5V50.888" transform="translate(46.544 38.082)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Pfad_5" data-name="Pfad 5" d="M4.5,9H107.663" transform="translate(0 16.925)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Pfad_6" data-name="Pfad 6" d="M87.738,25.925v80.238a11.463,11.463,0,0,1-11.463,11.463H18.963A11.463,11.463,0,0,1,7.5,106.163V25.925m17.194,0V14.463A11.463,11.463,0,0,1,36.156,3H59.082A11.463,11.463,0,0,1,70.544,14.463V25.925" transform="translate(8.463 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Pfad_7" data-name="Pfad 7" d="M15,16.5V50.888" transform="translate(29.619 38.082)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Pfad_8" data-name="Pfad 8" d="M21,16.5V50.888" transform="translate(46.544 38.082)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
   </g>
 </svg>

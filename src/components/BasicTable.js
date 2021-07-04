@@ -1,53 +1,65 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export default function BasicTable({ habits, onEditHabit }) {
   return (
-    <Table>
-      <thead>
-        <tr>
+    <TableWrapper>
+      <Table>
+        <thead>
           <th>Ziele</th>
           <th>Häufigkeit</th>
-        </tr>
-      </thead>
+        </thead>
 
-      <tbody>
-        {habits.map((habit) => {
-          return (
-            <tr onClick={() => onEditHabit(habit)}>
-              <td>{habit.goal}</td>
-              <td>{habit.frequency}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
+        <tbody>
+          {habits.map((habit) => {
+            return (
+              <tr onClick={() => onEditHabit(habit)}>
+                <td>{habit.goal}</td>
+                <td>{habit.frequency}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </TableWrapper>
   );
 }
 
 const Table = styled.table`
-  border-collapse: collapse;
-  width: 90%;
+  color: white;
   margin: 0 auto 6rem;
+  text-align: center;
+  width: 90%;
 
   td,
   th {
-    border: 1px solid #ddd;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    font-weight: 400;
     padding: 8px;
   }
 
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: var(--primary-transparent);
+    backdrop-filter: blur(15px);
   }
 
-  tr:hover {
-    background-color: #ddd;
+  tr:nth-child(odd) {
+    background-color: var(--secondary-transparent);
+    backdrop-filter: blur(15px);
   }
 
   th {
-    padding-top: 12px;
+    background-color: hsla(170, 80%, 30%, 0.85);
+    color: ivory;
+    font-weight: 600;
     padding-bottom: 12px;
+    padding-top: 12px;
     text-align: center;
-    background-color: #04aa6d;
-    color: white;
   }
+`;
+
+const TableWrapper = styled.div`
+  background: none;
+  height: 3rem;
+  padding: 0.5rem;
 `;

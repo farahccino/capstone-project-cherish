@@ -1,0 +1,184 @@
+{
+  "2021-07-01": [
+    {
+      "activity": {
+        "goal": "coden 👩🏻‍💻",
+        "frequency": "täglich",
+        "id": "219d2a2f-2498-4ff6-9be7-4c6651d33470"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "schlafen 🛌",
+        "frequency": "täglich",
+        "id": "4bf45931-8a3b-4315-b121-fff55a3c2e5a"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "essen 🥘",
+        "frequency": "täglich",
+        "id": "ec48984d-fc59-4316-b2d9-2c4ea4b14700"
+      },
+      "done": true
+    }
+  ],
+  "2021-07-04": [
+    {
+      "activity": {
+        "goal": "coden 👩🏻‍💻",
+        "frequency": "täglich",
+        "id": "219d2a2f-2498-4ff6-9be7-4c6651d33470"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "schlafen 🛌",
+        "frequency": "täglich",
+        "id": "4bf45931-8a3b-4315-b121-fff55a3c2e5a"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "essen 🥘",
+        "frequency": "täglich",
+        "id": "ec48984d-fc59-4316-b2d9-2c4ea4b14700"
+      },
+      "done": false
+    }
+  ],
+  "2021-07-03": [
+    {
+      "activity": {
+        "goal": "coden 👩🏻‍💻",
+        "frequency": "täglich",
+        "id": "219d2a2f-2498-4ff6-9be7-4c6651d33470"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "schlafen 🛌",
+        "frequency": "täglich",
+        "id": "4bf45931-8a3b-4315-b121-fff55a3c2e5a"
+      },
+      "done": false
+    },
+    {
+      "activity": {
+        "goal": "essen 🥘",
+        "frequency": "täglich",
+        "id": "ec48984d-fc59-4316-b2d9-2c4ea4b14700"
+      },
+      "done": false
+    }
+  ],
+  "2021-07-02": [
+    {
+      "activity": {
+        "goal": "coden 👩🏻‍💻",
+        "frequency": "täglich",
+        "id": "219d2a2f-2498-4ff6-9be7-4c6651d33470"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "schlafen 🛌",
+        "frequency": "täglich",
+        "id": "4bf45931-8a3b-4315-b121-fff55a3c2e5a"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "essen 🥘",
+        "frequency": "täglich",
+        "id": "ec48984d-fc59-4316-b2d9-2c4ea4b14700"
+      },
+      "done": true
+    }
+  ],
+  "2021-06-30": [
+    {
+      "activity": {
+        "goal": "coden 👩🏻‍💻",
+        "frequency": "täglich",
+        "id": "219d2a2f-2498-4ff6-9be7-4c6651d33470"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "schlafen 🛌",
+        "frequency": "täglich",
+        "id": "4bf45931-8a3b-4315-b121-fff55a3c2e5a"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "essen 🥘",
+        "frequency": "täglich",
+        "id": "ec48984d-fc59-4316-b2d9-2c4ea4b14700"
+      },
+      "done": true
+    }
+  ],
+  "2021-06-29": [
+    {
+      "activity": {
+        "goal": "coden 👩🏻‍💻",
+        "frequency": "täglich",
+        "id": "219d2a2f-2498-4ff6-9be7-4c6651d33470"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "schlafen 🛌",
+        "frequency": "täglich",
+        "id": "4bf45931-8a3b-4315-b121-fff55a3c2e5a"
+      },
+      "done": false
+    },
+    {
+      "activity": {
+        "goal": "essen 🥘",
+        "frequency": "täglich",
+        "id": "ec48984d-fc59-4316-b2d9-2c4ea4b14700"
+      },
+      "done": false
+    }
+  ],
+  "2021-06-28": [
+    {
+      "activity": {
+        "goal": "coden 👩🏻‍💻",
+        "frequency": "täglich",
+        "id": "219d2a2f-2498-4ff6-9be7-4c6651d33470"
+      },
+      "done": true
+    },
+    {
+      "activity": {
+        "goal": "schlafen 🛌",
+        "frequency": "täglich",
+        "id": "4bf45931-8a3b-4315-b121-fff55a3c2e5a"
+      },
+      "done": false
+    },
+    {
+      "activity": {
+        "goal": "essen 🥘",
+        "frequency": "täglich",
+        "id": "ec48984d-fc59-4316-b2d9-2c4ea4b14700"
+      },
+      "done": true
+    }
+  ]
+}

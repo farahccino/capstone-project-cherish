@@ -5,12 +5,14 @@ import { useState, useEffect } from 'react';
 
 import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
-import Home from './pages/Home';
-import Plus from './pages/Plus';
 import Goals from './pages/Goals';
+import Home from './pages/Home';
 import Landing from './pages/Landing';
+import Plus from './pages/Plus';
+import Tracker from './pages/Tracker';
 
-function App() {
+
+export default function App() {
   const [habitToEdit, setHabitToEdit] = useState(null);
 
   const [habits, setHabits] = useState(
@@ -35,45 +37,42 @@ function App() {
     <>
       <div>
         <Headline />
-        <MainContainer>
-          <Switch>
-            <Route exact path="/">
-              <Landing />
-            </Route>
-            <Route path="/today">
-              <Home
-                habits={habits}
-                setHabits={setHabits}
-                onEditHabit={editHabit}
-                onSetHabitToEdit={setHabitToEdit}
-                habitToEdit={habitToEdit}
-              />
-            </Route>
-            <Route path="/add-goal">
-              <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} />
-            </Route>
-            <Route path="/goals">
-              <Goals
-                habits={habits}
-                setHabits={setHabits}
-                onSaveHabit={editHabit}
-                onSetHabitToEdit={setHabitToEdit}
-                habitToEdit={habitToEdit}
-              />
-            </Route>
-          </Switch>
-        </MainContainer>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route path="/today">
+            <Home
+              habits={habits}
+              setHabits={setHabits}
+              onEditHabit={editHabit}
+              onSetHabitToEdit={setHabitToEdit}
+              habitToEdit={habitToEdit}
+            />
+          </Route>
+          <Route path="/tracker">
+            <Tracker habits={habits} />
+          </Route>
+          <Route path="/add-goal">
+            <Plus onAddHabit={addHabit} setHabitToEdit={setHabitToEdit} />
+          </Route>
+          <Route path="/goals">
+            <Goals
+              habits={habits}
+              setHabits={setHabits}
+              onSaveHabit={editHabit}
+              onSetHabitToEdit={setHabitToEdit}
+              habitToEdit={habitToEdit}
+            />
+          </Route>
+        </Switch>
       </div>
     </>
   );
 }
 
-export default App;
-
 const Headline = styled.h1`
+  color: ivory;
   font-family: 'Roboto';
   text-align: center;
-  color: ivory;
 `;
-
-const MainContainer = styled.main``;

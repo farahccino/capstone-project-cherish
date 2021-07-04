@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="238.313" height="238.313" viewBox="0 0 238.313 238.313">
-  <path id="Pfad_1" data-name="Pfad 1" d="M232.313,117.657A114.657,114.657,0,1,1,117.657,3,114.657,114.657,0,0,1,232.313,117.657Z" transform="translate(1.5 1.5)" fill="none" stroke="#004543" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
-  <path id="Pfad_2" data-name="Pfad 2" d="M18,12v91.725" transform="translate(101.157 61.294)" fill="none" stroke="#004543" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
-  <path id="Pfad_3" data-name="Pfad 3" d="M12,18h91.725" transform="translate(61.294 101.157)" fill="none" stroke="#004543" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+  <path id="Pfad_1" data-name="Pfad 1" d="M232.313,117.657A114.657,114.657,0,1,1,117.657,3,114.657,114.657,0,0,1,232.313,117.657Z" transform="translate(1.5 1.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+  <path id="Pfad_2" data-name="Pfad 2" d="M18,12v91.725" transform="translate(101.157 61.294)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+  <path id="Pfad_3" data-name="Pfad 3" d="M12,18h91.725" transform="translate(61.294 101.157)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
 </svg>
