@@ -66,6 +66,7 @@ const Emoji = styled.button`
 
 const EmojiWrapper = styled.section`
   align-items: center;
+  animation: 2.5s ease 0s 1 normal none running bounceIn;
   background-color: rgba(255, 235, 205, 0.2);
   backdrop-filter: blur(1px);
   border-radius: 100vw;
@@ -76,10 +77,24 @@ const EmojiWrapper = styled.section`
   margin-bottom: 3rem;
   position: absolute;
   right: 8%;
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    180% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const Greeting = styled.p`
   align-items: center;
+  animation: 2s ease 0s 1 normal none running bounceIn;
   background-color: var(--secondary-dark-transparent);
   backdrop-filter: blur(1px);
   border-radius: 100vw;
@@ -94,6 +109,19 @@ const Greeting = styled.p`
   right: 15%;
   padding: 0.9rem;
   position: absolute;
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    180% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const LogoImage = styled.img`

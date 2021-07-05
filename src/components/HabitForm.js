@@ -125,7 +125,7 @@ const Form = styled.form`
   display: grid;
   gap: 0.5rem;
   margin: 0.75rem 0.75rem;
-  max-width: 25rem;
+  width: 22rem;
   label,
   legend {
     font-weight: bold;

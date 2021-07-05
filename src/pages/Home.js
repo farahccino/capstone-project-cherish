@@ -177,7 +177,7 @@ export default function Home({
       </NavLink>
       <NavLink to="/" style={{ textDecoration: 'none' }}>
         <BackButton>
-          zurück <img src={returnIcon} alt="return icon" height="20px" />
+          <img src={returnIcon} alt="return icon" height="20px" /> zurück
         </BackButton>
       </NavLink>
       <FooterNavigation />
@@ -278,6 +278,7 @@ const HabitName = styled.span`
 
 const HabitWrapper = styled.div`
   align-items: center;
+  animation: 2s ease 0s 1 normal none running bounceIn;
   backdrop-filter: blur(20px);
   bottom: 0;
   display: flex;
@@ -286,7 +287,20 @@ const HabitWrapper = styled.div`
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 10;
+  z-index: 999;
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    180% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const Headline = styled.h1`
