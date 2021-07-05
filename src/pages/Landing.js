@@ -6,9 +6,15 @@ import { format } from 'date-fns';
 import Logo from '../images/cherish.svg';
 
 export default function Landing() {
-  const [currentMood, setCurrentMood] = useState([]);
+  const [currentMood, setCurrentMood] = useState(
+    loadFromLocalStorage('currentMood') ?? []
+  );
+  console.log(currentMood);
   const [currentMoodSaved, setCurrentMoodSaved] = useState(false);
+  console.log(currentMoodSaved);
   let history = useHistory();
+
+  const today = format(new Date(), 'yyyy-MM-dd');
 
   useEffect(() => {
     saveToLocalStorage('currentMood', currentMood);
@@ -18,9 +24,20 @@ export default function Landing() {
     if (currentMoodSaved) history.push('/today');
   }, [currentMoodSaved, history]);
 
+  function loadFromLocalStorage(currentMood) {
+    try {
+      const localData = localStorage.getItem(currentMood);
+      return JSON.parse(localData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   function placeIntoStorage(emoji) {
-    const today = format(new Date(), 'yyyy-MM-dd');
+    console.log(today in currentMood, 'test');
+    console.log(format(new Date(), 'yyyy-MM-dd'));
     setCurrentMood([{ [today]: emoji }, ...currentMood]);
+
     setCurrentMoodSaved(true);
   }
 

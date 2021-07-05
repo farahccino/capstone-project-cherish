@@ -16,6 +16,11 @@ export default function Grid({ habits }) {
     }
   }
 
+  function currentMoodLastSeven() {
+    const lastSeven = currentMoodData.slice(0, 7);
+    return lastSeven;
+  }
+
   const allDailyHabits = habits.filter(
     (habit) => habit.frequency === 'täglich'
   );
@@ -28,7 +33,7 @@ export default function Grid({ habits }) {
         return <Days>{day}</Days>;
       })}
       <HabitTitle>mood</HabitTitle>
-      {currentMoodData.map((mood) => (
+      {currentMoodLastSeven().map((mood) => (
         <Emojis>{Object.values(mood)[0]}</Emojis>
       ))}
       {allDailyHabits.map((habit, habitIndex) => {
