@@ -53,6 +53,7 @@ export default function Home({
     }
     const dailyHabits = habits.filter((habit) => habit.frequency === 'täglich');
     initialiseTrackingDataForToday(dailyHabits);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function checkIfTrackedAlready(habit) {

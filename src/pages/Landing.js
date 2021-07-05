@@ -6,36 +6,28 @@ import { format } from 'date-fns';
 import Logo from '../images/cherish.svg';
 
 export default function Landing() {
-  const [currentMood, setCurrentMood] = useState(
-
+  const [currentMood, setCurrentMood] = useState([]);
+  const [currentMoodSaved, setCurrentMoodSaved] = useState(false);
+  let history = useHistory();
 
   useEffect(() => {
     saveToLocalStorage('currentMood', currentMood);
   }, [currentMood]);
 
-  let history = useHistory();
-  const goToHomepage = () => {
-    history.push('/today');
-  };
+  useEffect(() => {
+    if (currentMoodSaved) history.push('/today');
+  }, [currentMoodSaved, history]);
 
   function placeIntoStorage(emoji) {
     const today = format(new Date(), 'yyyy-MM-dd');
     setCurrentMood([{ [today]: emoji }, ...currentMood]);
-    // goToHomepage();
+    setCurrentMoodSaved(true);
   }
 
   function saveToLocalStorage(currentMood, data) {
     localStorage.setItem(currentMood, JSON.stringify(data));
   }
 
-  function loadFromLocalStorage(key) {
-    try {
-      const localData = localStorage.getItem(key);
-      return JSON.parse(localData);
-    } catch (error) {
-      console.error(error);
-    }
-  }
   return (
     <>
       <LogoWrapper>

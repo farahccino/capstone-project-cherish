@@ -1,25 +1,11 @@
-import { useState } from 'react';
 import styled from 'styled-components/macro';
 
 export default function Grid({ habits }) {
   const daysOfTheWeek = ['M', 'D', 'M', 'D', 'F', 'S', 'S'];
 
-  const [trackingData, setTrackingData] = useState(
-    loadFromLocalStorage('trackingData') ?? {}
-  );
+  const trackingData = loadFromLocalStorage('trackingData') ?? {};
 
-  const [currentMoodData, setCurrentMoodData] = useState(
-    loadFromLocalStorage('currentMood') ?? []
-  );
-
-  function loadFromLocalStorage(key) {
-    try {
-      const localData = localStorage.getItem(key);
-      return JSON.parse(localData);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const currentMoodData = loadFromLocalStorage('currentMood') ?? [];
 
   function loadFromLocalStorage(trackingData) {
     try {
