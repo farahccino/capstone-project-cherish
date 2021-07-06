@@ -57,7 +57,7 @@ export default function Home({
   }, []);
 
   function checkIfTrackedAlready(habit) {
-    if (today in trackingData) {
+    if (!today in trackingData) {
       return trackingData[today].some((trackingActivity) => {
         if (trackingActivity.activity.id === habit.id) {
           return trackingActivity.done;
