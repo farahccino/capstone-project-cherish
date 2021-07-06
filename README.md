@@ -16,7 +16,7 @@ Mit dieser innovativen App behältst Du den Überblick über Deine Aktivitäten 
 
 ### `Browserversion`
 
-Die App findest du auf Vercel:
+Die App findest du auf Vercel: (optimiert für iPhone 6/7/8)
 [Demo Version](https://capstone-project-cherish.vercel.app/)
 
 ## `Tech Stack`
