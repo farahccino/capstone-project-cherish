@@ -29,8 +29,8 @@ export default function FooterNavigation({ isStatic }) {
 }
 
 const GoalButtonStyled = styled(GoalButton)`
-  height: 54px;
-  width: 54px;
+  height: 3.375rem;
+  width: 3.375rem;
 
   .active & path {
     fill: var(--glow);
@@ -40,8 +40,8 @@ const GoalButtonStyled = styled(GoalButton)`
 `;
 
 const HomeButtonStyled = styled(HomeButton)`
-  height: 54px;
-  width: 54px;
+  height: 3.375rem;
+  width: 3.375rem;
 
   .active & path {
     fill: var(--glow);
@@ -66,8 +66,8 @@ const NavWrapper = styled.footer`
 `;
 
 const PlusButtonStyled = styled(PlusButton)`
-  height: 54px;
-  width: 54px;
+  height: 3.375rem;
+  width: 3.375rem;
 
   .active & path {
     fill: var(--glow);

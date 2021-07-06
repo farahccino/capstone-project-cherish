@@ -35,9 +35,9 @@ export default function Home({
   const [trackingData, setTrackingData] = useState(
     loadFromLocalStorage('trackingData') ?? {}
   );
-  const today = format(new Date(), 'yyyy-MM-dd');
+  const today = format(new Date('2021-07-04'), 'yyyy-MM-dd');
 
-  const date = format(new Date(), 'EEEE, dd.MM.yyyy', {
+  const date = format(new Date('2021-07-04'), 'EEEE, dd.MM.yyyy', {
     locale: de,
   });
 
