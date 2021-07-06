@@ -12,7 +12,7 @@ Mit dieser innovativen App behältst Du den Überblick über Deine Aktivitäten 
 
 ### `Demo`
 
-![app gif](src/images/readme/demo.gif)
+<img src="src/images/readme/demo.gif" height="600">
 
 ### `Browserversion`
 
