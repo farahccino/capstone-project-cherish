@@ -35,9 +35,9 @@ export default function Home({
   const [trackingData, setTrackingData] = useState(
     loadFromLocalStorage('trackingData') ?? {}
   );
-  const today = format(new Date('2021-07-04'), 'yyyy-MM-dd');
+  const today = format(new Date(), 'yyyy-MM-dd');
 
-  const date = format(new Date('2021-07-04'), 'EEEE, dd.MM.yyyy', {
+  const date = format(new Date(), 'EEEE, dd.MM.yyyy', {
     locale: de,
   });
 
@@ -175,36 +175,10 @@ export default function Home({
           zum Tracker <img src={trackerIcon} alt="tracker icon" height="20px" />
         </TrackerButton>
       </NavLink>
-      <NavLink to="/" style={{ textDecoration: 'none' }}>
-        <BackButton>
-          <img src={returnIcon} alt="return icon" height="20px" /> zurück
-        </BackButton>
-      </NavLink>
       <FooterNavigation />
     </>
   );
 }
-
-const BackButton = styled.button`
-  align-items: center;
-  backdrop-filter: blur(1px);
-  background-color: hsla(330, 100%, 71%, 0.7);
-  border: 1px solid ivory;
-  border-radius: 1rem;
-  bottom: 19%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  font-weight: 600;
-  justify-content: space-around;
-  left: 10%;
-  padding: 0.5rem;
-  position: fixed;
-  width: 9rem;
-`;
 
 const ButtonWrapper = styled.div`
   display: inline-block;
@@ -340,7 +314,7 @@ const TrackerButton = styled.button`
   display: flex;
   font-weight: 600;
   justify-content: space-around;
-  right: 10%;
+  right: 30%;
   padding: 0.5rem;
   position: fixed;
   width: 9rem;
